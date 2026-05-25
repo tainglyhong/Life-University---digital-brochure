@@ -1,0 +1,2191 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="32x32" href="re_lu.png" />
+    <link
+      href="https://fonts.googleapis.com/css2
+?family=Inter:wght@400;600;800
+&family=Kantumruy+Pro:wght@400;600;700
+&family=Koulen&display=swap"
+      rel="stylesheet"
+    />
+    <title>Life University — Digital Brochure 2025–2026</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <style>
+      .nav-link {
+        position: relative;
+      }
+      .nav-link.active {
+        color: #1e3a8a; /* blue-800 */
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        height: 2px;
+        width: 0%;
+        background: #4f46e5;
+        transition: width 0.2s;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+      /* --- Pretty ribbons for prices --- */
+      .price-ribbon {
+        position: absolute;
+        right: -12px;
+        top: 18px;
+        transform: rotate(90deg);
+        background: linear-gradient(180deg, #3b82f6, #1e40af); /* blue gradient */
+        color: #fff;
+        padding: 6px 14px;
+        font-weight: 700;
+        border-radius: 0.5rem;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      }
+      /* --- Subtle glass effect --- */
+      .glass {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: saturate(180%) blur(10px);
+      }
+      /* Default (Latin) font for the site */
+      html {
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+      }
+
+      /* Khmer body text */
+      :lang(km),
+      .kh {
+        font-family:
+          "Kantumruy Pro", "Noto Sans Khmer", "Battambang", "Siemreap", Arial,
+          sans-serif;
+        line-height: 1.8; /* nicer for Khmer */
+      }
+
+      /* Khmer display/headings (optional – bold, poster style) */
+      .kh-display:lang(km),
+      .kh-display {
+        font-family:
+          "Koulen", "Kantumruy Pro", "Noto Sans Khmer", Arial, sans-serif;
+        letter-spacing: 0.2px;
+        line-height: 1.3;
+      }
+      #programs .price-pill {
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        background: linear-gradient(135deg, #60a5fa, #1e3a8a); /* blue pill */
+        color: #fff;
+        padding: 0.35rem 0.6rem;
+        font-weight: 700;
+        border-radius: 9999px;
+        font-size: 0.8rem;
+        box-shadow: 0 8px 18px rgba(30, 58, 138, 0.15);
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.25rem;
+      }
+
+      /* Override common Tailwind color utilities to a blue palette */
+      :root{
+        --blue-50:#eff6ff;
+        --blue-100:#dbeafe;
+        --blue-200:#bfdbfe;
+        --blue-400:#60a5fa;
+        --blue-500:#3b82f6;
+        --blue-600:#1e40af;
+        --blue-700:#1e3a8a;
+      }
+
+      /* Background / gradient overrides */
+      .bg-indigo-600, .from-indigo-600 { background-color: var(--blue-600) !important; }
+      .via-violet-600, .bg-violet-600 { background-color: var(--blue-700) !important; }
+      .to-fuchsia-600, .bg-fuchsia-600 { background-color: var(--blue-500) !important; }
+      /* .bg-amber-400 { background-color: var(--blue-400) !important; } */
+      .bg-amber-50, .bg-amber-100 { background-color: var(--blue-50) !important; }
+      .bg-amber-500 { background-color: var(--blue-600) !important; }
+      .bg-emerald-50, .bg-emerald-100 { background-color: var(--blue-50) !important; }
+      .bg-rose-50, .bg-rose-100 { background-color: var(--blue-50) !important; }
+
+      /* Text / border overrides */
+      .text-indigo-700, .text-indigo-600 { color: var(--blue-700) !important; }
+      .border-indigo-100 { border-color: var(--blue-100) !important; }
+      .border-indigo-200 { border-color: var(--blue-200) !important; }
+      .text-emerald-700, .text-rose-700 { color: var(--blue-700) !important; }
+      .hero-kenburns {
+        transform-origin: center;
+        animation: kenburns 24s ease-in-out infinite alternate;
+      }
+      #backToTop.tap {
+        transform: scale(0.96);
+      }
+      @keyframes kenburns {
+        from {
+          transform: scale(1) translateY(0);
+        }
+        to {
+          transform: scale(1.08) translateY(-2%);
+        }
+      }
+      /* --- Print styles for A4 --- */
+      @media print {
+        @page {
+          size: A4;
+          margin: 14mm;
+        }
+        .noprint {
+          display: none !important;
+        }
+        .section {
+          break-inside: avoid;
+        }
+        body {
+          background: #fff !important;
+        }
+        #programs .program-card {
+          break-inside: avoid;
+        }
+        #about article {
+          break-inside: avoid;
+        }
+        #hero {
+          display: none !important;
+        }
+        #backToTop {
+          display: none !important;
+        }
+      }
+      /* --- Mobile improvements --- */
+      /* Make the mobile menu a full-screen, scrollable panel when visible */
+      #mobileMenu {
+        position: fixed;
+        inset: 0; /* top:0; right:0; bottom:0; left:0 */
+        background: rgba(255, 255, 255, 0.98);
+        z-index: 60;
+        padding-top: 4rem; /* room for header */
+        transition:
+          transform 220ms ease,
+          opacity 180ms ease;
+        -webkit-overflow-scrolling: touch;
+      }
+      #mobileMenu.hidden {
+        display: none;
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      #mobileMenu:not(.hidden) {
+        display: block;
+        transform: translateY(0);
+        opacity: 1;
+        overflow-y: auto;
+      }
+
+      /* Larger touch targets for mobile links and controls */
+      .mobile-link {
+        padding: 0.9rem 1.1rem;
+        font-size: 1rem;
+        border-radius: 0.75rem;
+      }
+
+      /* Slightly adjust price-pill on small screens to avoid overflow */
+      @media (max-width: 640px) {
+        #programs .price-pill {
+          right: 8px;
+          top: 8px;
+          padding: 0.25rem 0.5rem;
+          font-size: 0.75rem;
+        }
+
+        /* Make program/partner cards more vertical-friendly */
+        #progGrid .program-card img,
+        #partnerGrid .partner-card > div:first-child {
+          object-fit: cover;
+        }
+
+        /* Improve tappable controls */
+        .deg-btn,
+        .filter-btn,
+        .copy-btn {
+          padding: 0.55rem 0.9rem;
+        }
+
+        /* Soften hero padding on very small screens */
+        #hero .max-w-3xl {
+          padding: 1rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gradient-to-b from-sky-50 via-white to-indigo-50 text-slate-800"
+  >
+    <!-- NAV (Redesigned) -->
+    <a
+      href="#about"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:bg-white focus:text-slate-800 focus:px-3 focus:py-2 focus:rounded-md"
+      >Skip to content</a
+    >
+
+    <header id="siteHeader" class="sticky top-0 z-50 noprint">
+      <nav
+        id="navBar"
+        class="glass border-b border-white/40 transition-all duration-300"
+      >
+        <div
+          class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+        >
+          <!-- Brand (Clean & Professional) -->
+          <a
+            href="#hero"
+            aria-label="Life University — Home"
+            class="group inline-flex items-center gap-3"
+          >
+            <!-- Emblem -->
+            <img
+              src="re_lu.png"
+              alt="Life University logo"
+              class="h-10 w-10 rounded-xl object-cover ring-1 ring-black/5 shadow-sm"
+            />
+
+            <!-- Wordmark -->
+            <div class="leading-tight">
+              <div
+                class="text-lg font-extrabold tracking-tight text-slate-900 transition-colors group-hover:text-indigo-700"
+              >
+                Life University
+              </div>
+              <div
+                class="mt-[2px] flex items-center gap-2 text-[11px] text-slate-600"
+              >
+                <span class="kh" lang="km">សាកលវិទ្យាល័យឡាយហ្វ</span>
+                <span class="hidden sm:inline text-slate-400">•</span>
+                <span class="tracking-widest uppercase"
+                  >Truth • Love • Integrity</span
+                >
+              </div>
+            </div>
+          </a>
+
+          <!-- Desktop nav -->
+          <div class="hidden md:flex items-center gap-6 font-medium">
+            <a href="#about" class="nav-link hover:text-indigo-600">About</a>
+            <a href="#programs" class="nav-link hover:text-indigo-600"
+              >Programs</a
+            >
+            <a href="#scholarships" class="nav-link hover:text-indigo-600"
+              >Scholarships</a
+            >
+            <a href="#partners" class="nav-link hover:text-indigo-600"
+              >Partners</a
+            >
+            <a href="#contact" class="nav-link hover:text-indigo-600"
+              >Contact</a
+            >
+            <!-- <button
+              onclick="window.print()"
+              class="ml-1 rounded-xl bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-500 shadow"
+            >
+              Print / Save PDF
+            </button> -->
+            <a
+              href="#contact"
+              class="hidden lg:inline-flex rounded-xl bg-amber-400 px-4 py-2 font-semibold text-slate-900 hover:bg-amber-300 shadow"
+            >
+              Apply
+            </a>
+          </div>
+
+          <!-- Mobile toggle -->
+          <button
+            id="menuButton"
+            class="md:hidden p-2 rounded-lg hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <i id="iconHamburger" class="fa-solid fa-bars text-lg"></i>
+            <i id="iconClose" class="fa-solid fa-xmark text-lg hidden"></i>
+          </button>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden border-t border-white/30">
+          <div class="px-4 py-3 grid gap-2 text-slate-800">
+            <a
+              href="#about"
+              class="mobile-link rounded-lg px-3 py-2 hover:bg-indigo-50"
+              >About</a
+            >
+            <a
+              href="#programs"
+              class="mobile-link rounded-lg px-3 py-2 hover:bg-indigo-50"
+              >Programs</a
+            >
+            <a
+              href="#scholarships"
+              class="mobile-link rounded-lg px-3 py-2 hover:bg-indigo-50"
+              >Scholarships</a
+            >
+            <a
+              href="#partners"
+              class="mobile-link rounded-lg px-3 py-2 hover:bg-indigo-50"
+              >Partners</a
+            >
+            <a
+              href="#contact"
+              class="mobile-link rounded-lg px-3 py-2 hover:bg-indigo-50"
+              >Contact</a
+            >
+            <!-- <button
+              onclick="window.print()"
+              class="mt-2 w-full rounded-xl bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-500 shadow"
+            >
+              Print / Save PDF
+            </button> -->
+          </div>
+        </div>
+
+        <!-- Scroll progress bar -->
+        <div id="scrollProgress" class="h-0.5 bg-indigo-600 w-0"></div>
+      </nav>
+    </header>
+
+    <!-- HERO (Redesigned) -->
+    <section
+      id="hero"
+      class="relative h-[60vh] sm:h-[70vh] md:h-[80vh] overflow-hidden"
+    >
+      <!-- Background image with subtle Ken Burns -->
+      <img
+        src="bg1.jpg"
+        alt="Life University Campus"
+        class="absolute inset-0 h-full w-full object-cover hero-kenburns"
+      />
+
+      <!-- Overlays -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/30 to-transparent"
+      ></div>
+      <div
+        class="absolute inset-0 bg-[radial-gradient(60%_60%_at_25%_70%,rgba(99,102,241,.25),transparent)]"
+      ></div>
+
+      <!-- Content -->
+      <div class="relative z-10 h-full">
+        <div
+          class="mx-auto max-w-7xl h-full px-4 sm:px-6 lg:px-8 flex items-end sm:items-center"
+        >
+          <div
+            class="max-w-3xl mb-8 sm:mb-0 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-6 sm:p-8 text-white shadow-xl"
+          >
+            <div class="flex flex-wrap items-center gap-2">
+              <span
+                class="inline-flex items-center rounded-full bg-amber-400 px-3 py-1 text-xs font-semibold text-slate-900"
+              >
+                NEW ACADEMIC YEAR 2025–2026
+              </span>
+              <span class="hidden sm:inline text-xs text-white/80"
+                >Admissions Open</span
+              >
+            </div>
+
+            <h1
+              class="mt-3 text-3xl sm:text-5xl font-extrabold leading-tight drop-shadow-md"
+            >
+              Life University
+            </h1>
+
+            <p class="kh mt-2 text-sm sm:text-base text-white/90" lang="km">
+              សាកលវិទ្យាល័យឡាយហ្វ — អប់រំគុណភាពខ្ពស់
+              និងទំនួលខុសត្រូវខ្ពស់ចំពោះការសិក្សារបស់និស្សិត
+            </p>
+
+            <!-- Quick chips -->
+            <div class="mt-4 flex flex-wrap gap-2 text-[11px] sm:text-xs">
+              <span
+                class="rounded-full bg-white/15 px-3 py-1 border border-white/20"
+                >Scholarships available</span
+              >
+              <span
+                class="rounded-full bg-white/15 px-3 py-1 border border-white/20"
+                >Free dormitory</span
+              >
+              <span
+                class="rounded-full bg-white/15 px-3 py-1 border border-white/20"
+                >Sihanoukville campus</span
+              >
+            </div>
+
+            <!-- CTAs -->
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a
+                href="#contact"
+                class="inline-flex items-center justify-center rounded-xl bg-amber-400 px-5 py-3 font-semibold text-slate-900 shadow-lg hover:bg-amber-300"
+              >
+                Register Now
+              </a>
+              <a
+                href="#programs"
+                class="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 font-semibold text-white hover:bg-white/20"
+              >
+                Explore Programs
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scroll cue -->
+    <a
+      href="#about"
+      class="noprint absolute left-1/2 -translate-x-1/2 bottom-4 inline-flex flex-col items-center text-white/80 hover:text-white"
+    >
+      <span class="text-xs tracking-wider">Scroll</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="mt-1 h-5 w-5 animate-bounce"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M12 16l-6-6h12l-6 6z" />
+      </svg>
+    </a>
+
+    <!-- ABOUT / PRESIDENT MESSAGE (Redesigned) -->
+    <section
+      id="about"
+      class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16"
+    >
+      <div
+        class="relative rounded-3xl p-[1px] bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 shadow-xl"
+      >
+        <div class="rounded-3xl bg-white">
+          <div class="p-6 sm:p-8">
+            <div class="grid lg:grid-cols-3 gap-8 items-start">
+              <!-- President card -->
+              <article
+                class="lg:col-span-1 relative overflow-hidden rounded-2xl border bg-white shadow-sm p-6"
+                style="break-inside: avoid"
+              >
+                <!-- soft glow -->
+                <div
+                  class="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full bg-indigo-50 blur-3xl"
+                ></div>
+
+                <div class="flex items-center gap-4 relative">
+                  <img
+                    src="pre.png"
+                    alt="Rev. Dr. David Koo"
+                    class="h-16 w-16 rounded-full object-cover ring-4 ring-indigo-100"
+                  />
+                  <div>
+                    <div class="font-bold">Message from the President</div>
+                    <div class="text-sm text-slate-500">
+                      Rev. Dr. David Koo (Kyen Hoe)
+                    </div>
+                  </div>
+                </div>
+
+                <figure class="relative mt-5">
+                  <!-- quote icon -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="absolute -left-1 -top-2 h-6 w-6 text-indigo-200"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M7.17 6A5.18 5.18 0 002 11.18V22h8V10a4 4 0 00-2.83-4zM17.17 6A5.18 5.18 0 0012 11.18V22h8V10a4 4 0 00-2.83-4z"
+                    />
+                  </svg>
+                  <blockquote
+                    class="kh mt-2 pl-6 text-sm leading-7 text-slate-700"
+                    lang="km"
+                  >
+                    <span class="font-semibold"
+                      >ប្រសាសន៍ពីប្រធានសាកលវិទ្យាល័យ៖</span
+                    >
+                    បេសកកម្មរបស់សាកលវិទ្យាល័យជីវិតគឺផ្តល់ការអប់រំបែបវិជ្ជាជីវៈ
+                    និងគុណភាពខ្ពស់
+                    ដើម្បីបណ្តុះនិស្សិតឱ្យក្លាយជាមនុស្សមានសមត្ថភាព យុត្តិធម៌
+                    និងប្ដេជ្ញាចិត្តបម្រើសង្គម។
+                  </blockquote>
+                </figure>
+
+                <!-- optional expand for more text (no JS) -->
+                <details class="mt-3 text-sm text-slate-600">
+                  <summary
+                    class="cursor-pointer text-indigo-600 hover:underline"
+                  >
+                    Read more
+                  </summary>
+                  <p class="mt-2">
+                    We are committed to nurturing character, competence, and
+                    service—equipping graduates to impact communities with
+                    integrity and excellence.
+                  </p>
+                </details>
+              </article>
+
+              <!-- Why Life University -->
+              <article
+                class="lg:col-span-2 rounded-2xl border bg-white shadow-sm p-6"
+                style="break-inside: avoid"
+              >
+                <header class="flex items-start justify-between gap-4">
+                  <h2
+                    class="kh-display text-2xl font-extrabold tracking-tight text-indigo-700"
+                    lang="km"
+                  >
+                    ហេតុអ្វីជ្រើសរើស
+                    <span class="text-slate-900">Life University?</span>
+                  </h2>
+                </header>
+
+                <!-- Features grid -->
+                <div class="mt-5 grid sm:grid-cols-2 gap-4">
+                  <!-- item -->
+                  <div
+                    class="group rounded-xl border p-4 hover:shadow-sm transition"
+                  >
+                    <div class="flex items-start gap-3">
+                      <span
+                        class="mt-1 h-8 w-8 rounded-lg bg-indigo-50 text-indigo-700 grid place-items-center"
+                      >
+                        <!-- check -->
+                        <i class="fa-solid fa-check"></i>
+                      </span>
+                      </span>
+                      <div>
+                        <h3 class="font-semibold">
+                          High academic &amp; professional standards
+                        </h3>
+                        <p class="mt-1 text-sm text-slate-600">
+                          Rigorous coursework and mentoring for real-world
+                          readiness.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="group rounded-xl border p-4 hover:shadow-sm transition"
+                  >
+                    <div class="flex items-start gap-3">
+                      <span
+                        class="mt-1 h-8 w-8 rounded-lg bg-violet-50 text-violet-700 grid place-items-center"
+                      >
+                        <!-- campus -->
+                        <i class="fa-solid fa-ranking-star"></i>
+                      </span>
+                      <div>
+                        <h3 class="font-semibold">
+                          Quality teaching &amp; modern facilities
+                        </h3>
+                        <p class="mt-1 text-sm text-slate-600">
+                          Supportive campus life with updated labs and learning
+                          spaces.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="group rounded-xl border p-4 hover:shadow-sm transition"
+                  >
+                    <div class="flex items-start gap-3">
+                      <span
+                        class="mt-1 h-8 w-8 rounded-lg bg-emerald-50 text-emerald-700 grid place-items-center"
+                      >
+                        <!-- update -->
+                        <i class="fa-solid fa-briefcase"></i>
+                      </span>
+                      <div>
+                        <h3 class="font-semibold">
+                          Curriculum aligned with job-market needs
+                        </h3>
+                        <p class="mt-1 text-sm text-slate-600">
+                          Continuously refreshed programs to match industry
+                          trends.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="group rounded-xl border p-4 hover:shadow-sm transition"
+                  >
+                    <div class="flex items-start gap-3">
+                      <span
+                        class="mt-1 h-8 w-8 rounded-lg bg-amber-50 text-amber-700 grid place-items-center"
+                      >
+                        <!-- heart -->
+                        <i class="fa-solid fa-heart"></i>
+                      </span>
+                      <div>
+                        <h3 class="font-semibold">
+                          Strong care &amp; responsibility for students
+                        </h3>
+                        <p class="mt-1 text-sm text-slate-600">
+                          Advising, tutoring, and follow-up to help you thrive.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- English summary callout -->
+                <div
+                  class="mt-6 rounded-xl border border-indigo-100 bg-gradient-to-br from-slate-50 to-indigo-50 p-4"
+                >
+                  <p class="text-sm text-slate-700">
+                    <b>English summary:</b> Life University is a private
+                    university recognized nationally and internationally for the
+                    quality of teaching, learning facilities, and student
+                    experience. The curriculum is continually updated to meet
+                    labor market needs, and the University cares deeply about
+                    student success.
+                  </p>
+                  <div class="mt-4 flex flex-wrap gap-3">
+                    <a
+                      href="#programs"
+                      class="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-500"
+                    >
+                      Explore Programs
+                    </a>
+                    <a
+                      href="#contact"
+                      class="inline-flex items-center gap-2 rounded-xl border border-indigo-200 px-4 py-2 text-indigo-700 font-semibold hover:bg-indigo-50"
+                    >
+                      Contact Admissions
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS & FEES (Redesigned) -->
+    <section
+      id="programs"
+      class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16"
+    >
+      <!-- gradient frame -->
+      <div
+        class="relative rounded-3xl p-[1px] bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 shadow-xl"
+      >
+        <div class="rounded-3xl bg-white">
+          <div class="p-6 sm:p-8">
+            <!-- Header -->
+            <div class="flex items-end justify-between flex-wrap gap-4">
+              <div>
+                <h2 class="text-2xl font-extrabold tracking-tight">
+                  Programs & Fees
+                </h2>
+                <span class="kh block text-sm text-slate-500" lang="km"
+                  >កម្មវិធីសិក្សា និងតម្លៃ</span
+                >
+              </div>
+              <p class="text-sm text-slate-500">
+                *Fees shown are per year (edit rate if needed).
+              </p>
+            </div>
+
+            <!-- Controls -->
+            <div class="mt-5 flex flex-wrap items-center gap-3">
+              <!-- Search -->
+              <label for="progSearch" class="sr-only">Search programs</label>
+              <div class="relative">
+                <input
+                  id="progSearch"
+                  type="text"
+                  placeholder="Search program…"
+                  class="w-64 rounded-xl border px-9 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="pointer-events-none absolute left-3 top-2.5 h-4 w-4 text-slate-400"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M10 4a6 6 0 104.47 10.03l4.25 4.25 1.42-1.42-4.25-4.25A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"
+                  />
+                </svg>
+              </div>
+
+              <!-- Degree filters -->
+              <div
+                class="flex flex-wrap gap-2"
+                role="tablist"
+                aria-label="Filter by degree"
+              >
+                <button
+                  type="button"
+                  class="deg-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                  data-deg="ALL"
+                  aria-pressed="true"
+                >
+                  All
+                </button>
+                <button
+                  type="button"
+                  class="deg-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                  data-deg="B"
+                  aria-pressed="false"
+                >
+                  Bachelor
+                </button>
+                <button
+                  type="button"
+                  class="deg-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                  data-deg="A"
+                  aria-pressed="false"
+                >
+                  Associate
+                </button>
+                <button
+                  type="button"
+                  class="deg-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                  data-deg="M"
+                  aria-pressed="false"
+                >
+                  Master
+                </button>
+              </div>
+
+              <!-- Sort -->
+              <div class="ml-auto flex items-center gap-2">
+                <label for="progSort" class="text-xs text-slate-500"
+                  >Sort</label
+                >
+                <select
+                  id="progSort"
+                  class="rounded-xl border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                >
+                  <option value="default">Default</option>
+                  <option value="price-asc">Price: Low → High</option>
+                  <option value="price-desc">Price: High → Low</option>
+                </select>
+              </div>
+
+              <!-- Currency toggle -->
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-slate-500">USD</span>
+                <button
+                  id="curToggle"
+                  type="button"
+                  class="relative h-6 w-11 rounded-full bg-slate-200 transition data-[on=true]:bg-indigo-600"
+                  aria-pressed="false"
+                  data-on="false"
+                >
+                  <span
+                    class="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform translate-x-0 data-[on=true]:translate-x-5"
+                  ></span>
+                </button>
+                <span class="text-xs text-slate-500">KHR</span>
+              </div>
+            </div>
+
+            <!-- Grid -->
+            <div
+              id="progGrid"
+              class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              <!-- Card template: data-levels can contain comma-separated values e.g. "B,A" -->
+              <!-- Business cluster -->
+              <article
+                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                data-levels="B"
+                data-price-usd="550"
+              >
+                <div class="price-pill">
+                  <span class="js-price" data-usd="550"></span>
+                  <span class="text-[10px] opacity-80">/year</span>
+                </div>
+                <img
+                  src="8.png"
+                  alt="Business Programs"
+                  class="h-40 w-full object-cover"
+                />
+                <div class="p-5">
+                  <div
+                    class="text-[11px] uppercase tracking-wide text-slate-500"
+                  >
+                    Bachelor
+                  </div>
+                  <h3 class="mt-1 font-bold">
+                    Management, Accounting, Marketing, Banking &amp; Finance
+                  </h3>
+                </div>
+              </article>
+
+              <!-- Computer Science -->
+              <article
+                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                data-levels="B"
+                data-price-usd="550"
+              >
+                <div class="price-pill">
+                  <span class="js-price" data-usd="550"></span
+                  ><span class="text-[10px] opacity-80">/year</span>
+                </div>
+                <img
+                  src="1.png"
+                  alt="Computer Science"
+                  class="h-40 w-full object-cover"
+                />
+                <div class="p-5">
+                  <div
+                    class="text-[11px] uppercase tracking-wide text-slate-500"
+                  >
+                    Bachelor
+                  </div>
+                  <h3 class="mt-1 font-bold">Computer Science</h3>
+                </div>
+              </article>
+
+              <!-- Civil Engineering -->
+              <article
+                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                data-levels="B"
+                data-price-usd="550"
+              >
+                <div class="price-pill">
+                  <span class="js-price" data-usd="550"></span
+                  ><span class="text-[10px] opacity-80">/year</span>
+                </div>
+                <img
+                  src="6.jpg"
+                  alt="Civil Engineering"
+                  class="h-40 w-full object-cover"
+                />
+                <div class="p-5">
+                  <div
+                    class="text-[11px] uppercase tracking-wide text-slate-500"
+                  >
+                    Bachelor
+                  </div>
+                  <h3 class="mt-1 font-bold">Civil Engineering</h3>
+                </div>
+              </article>
+
+              <!-- Languages -->
+              <article
+                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                data-levels="B"
+                data-price-usd="550"
+              >
+                <div class="price-pill">
+                  <span class="js-price" data-usd="550"></span
+                  ><span class="text-[10px] opacity-80">/year</span>
+                </div>
+                <img
+                  src="7.jpg"
+                  alt="Languages"
+                  class="h-40 w-full object-cover"
+                />
+                <div class="p-5">
+                  <div
+                    class="text-[11px] uppercase tracking-wide text-slate-500"
+                  >
+                    Bachelor
+                  </div>
+                  <h3 class="mt-1 font-bold">
+                    English Literature, Korean Literature, Chinese Language
+                  </h3>
+                </div>
+              </article>
+
+              <!-- Nursing & Midwifery -->
+              <article
+                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                data-levels="B,A"
+                data-price-usd="1000"
+              >
+                <div class="price-pill">
+                  <span class="js-price" data-usd="1000"></span
+                  ><span class="text-[10px] opacity-80">/year</span>
+                </div>
+                <img
+                  src="2.jpg"
+                  alt="Nursing & Midwifery"
+                  class="h-40 w-full object-cover"
+                />
+                <div class="p-5">
+                  <div
+                    class="text-[11px] uppercase tracking-wide text-slate-500"
+                  >
+                    Bachelor &amp; Associate
+                  </div>
+                  <h3 class="mt-1 font-bold">Nursing &amp; Midwifery</h3>
+                </div>
+              </article>
+
+              <!-- Sports Management & Coaching -->
+              <article
+                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                data-levels="B,A"
+                data-price-usd="550"
+              >
+                <div class="price-pill">
+                  <span class="js-price" data-usd="550"></span
+                  ><span class="text-[10px] opacity-80">/year</span>
+                </div>
+                <img
+                  src="4.jpg"
+                  alt="Sports Management & Coaching"
+                  class="h-40 w-full object-cover"
+                />
+                <div class="p-5">
+                  <div
+                    class="text-[11px] uppercase tracking-wide text-slate-500"
+                  >
+                    Bachelor &amp; Associate
+                  </div>
+                  <h3 class="mt-1 font-bold">
+                    Sports Management &amp; Coaching
+                  </h3>
+                </div>
+              </article>
+
+              <!-- Theology -->
+              <article
+                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                data-levels="B,A"
+                data-price-usd="550"
+              >
+                <div class="price-pill">
+                  <span class="js-price" data-usd="550"></span
+                  ><span class="text-[10px] opacity-80">/year</span>
+                </div>
+                <img
+                  src="3.jpg"
+                  alt="Theology"
+                  class="h-40 w-full object-cover"
+                />
+                <div class="p-5">
+                  <div
+                    class="text-[11px] uppercase tracking-wide text-slate-500"
+                  >
+                    Bachelor &amp; Associate
+                  </div>
+                  <h3 class="mt-1 font-bold">Theology</h3>
+                </div>
+              </article>
+
+              <!-- Master Programs -->
+              <article
+                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition sm:col-span-2 lg:col-span-3"
+                data-levels="M"
+                data-price-usd="880"
+              >
+                <div class="price-pill">
+                  <span class="js-price" data-usd="880"></span
+                  ><span class="text-[10px] opacity-80">/year</span>
+                </div>
+                <img
+                  src="5.jpg"
+                  alt="Master Programs"
+                  class="h-56 w-full object-cover"
+                />
+                <div class="p-5">
+                  <div
+                    class="text-[11px] uppercase tracking-wide text-slate-500"
+                  >
+                    Master
+                  </div>
+                  <h3 class="mt-1 font-bold">
+                    Business Administration (MBA), Computer Science, English,
+                    Theology
+                  </h3>
+                </div>
+              </article>
+            </div>
+
+            <!-- Empty state -->
+            <div
+              id="progEmpty"
+              class="hidden mt-6 text-center text-slate-500 text-sm"
+            >
+              No programs match your filter.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHOLARSHIPS (Redesigned) -->
+    <section
+      id="scholarships"
+      class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16"
+    >
+      <div
+        class="relative rounded-3xl p-[1px] bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 shadow-xl"
+      >
+        <div class="rounded-3xl bg-white">
+          <div class="p-6 sm:p-8">
+            <!-- Header -->
+            <div
+              class="flex flex-col md:flex-row md:items-end md:justify-between gap-4"
+            >
+              <div>
+                <h2 class="text-2xl font-extrabold tracking-tight">
+                  Scholarships
+                </h2>
+                <span class="kh-display block text-sm text-slate-500" lang="km"
+                  >អាហារូបករណ៍</span
+                >
+              </div>
+              <div class="flex flex-wrap gap-2 text-xs">
+                <span
+                  class="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-emerald-700 border border-emerald-200"
+                  >100% Full</span
+                >
+                <span
+                  class="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-indigo-700 border border-indigo-200"
+                  >80% korean languages</span
+                >
+                <span
+                  class="inline-flex items-center rounded-full bg-amber-50 px-3 py-1 text-amber-700 border border-amber-200"
+                  >50% Grade B</span
+                >
+                <span
+                  class="inline-flex items-center rounded-full bg-rose-50 px-3 py-1 text-rose-700 border border-rose-200"
+                  >Theology Special</span
+                >
+              </div>
+            </div>
+
+            <!-- Cards grid -->
+            <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Grade A 100% -->
+              <article
+                class="relative rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition"
+                style="break-inside: avoid"
+              >
+                <span
+                  class="absolute right-4 top-4 rounded-full bg-emerald-600 text-white text-xs font-bold px-2 py-1"
+                  >100%</span
+                >
+                <div class="flex items-start gap-3">
+                  <div
+                    class="h-10 w-10 rounded-xl bg-emerald-100 text-emerald-700 grid place-items-center"
+                  >
+                    <!-- trophy -->
+                    <i class="fa-solid fa-crown"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold">Grade A — Entrance Exam</h3>
+                    <p class="mt-1 text-sm text-slate-600">
+                      Full tuition waiver for outstanding exam results.
+                    </p>
+                    <ul
+                      class="mt-3 space-y-1 text-sm text-slate-700 list-disc pl-4"
+                    >
+                      <li>Eligibility: Grade A in entrance exam</li>
+                      <li>Covers: 100% tuition (annual)</li>
+                      <li>Programs: All eligible bachelor majors</li>
+                    </ul>
+                    <details class="mt-3 text-sm">
+                      <summary
+                        class="cursor-pointer text-indigo-600 hover:underline"
+                      >
+                        More details
+                      </summary>
+                      <p class="mt-2 text-slate-600">
+                        May require maintaining academic performance each year.
+                      </p>
+                    </details>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Grade B 50% -->
+              <article
+                class="relative rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition"
+                style="break-inside: avoid"
+              >
+                <span
+                  class="absolute right-4 top-4 rounded-full bg-amber-500 text-white text-xs font-bold px-2 py-1"
+                  >50%</span
+                >
+                <div class="flex items-start gap-3">
+                  <div
+                    class="h-10 w-10 rounded-xl bg-amber-100 text-amber-700 grid place-items-center"
+                  >
+                    <!-- medal -->
+                    <i class="fa-solid fa-crown"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold">Grade B — Entrance Exam</h3>
+                    <p class="mt-1 text-sm text-slate-600">
+                      Half tuition waiver for strong exam results.
+                    </p>
+                    <ul
+                      class="mt-3 space-y-1 text-sm text-slate-700 list-disc pl-4"
+                    >
+                      <li>Eligibility: Grade B in entrance exam</li>
+                      <li>Covers: 50% tuition (annual)</li>
+                      <li>Programs: All eligible bachelor majors</li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Korean Language Scholarship — 80% -->
+              <article
+                class="relative rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition"
+                style="break-inside: avoid"
+              >
+                <span
+                  class="absolute right-4 top-4 rounded-full bg-indigo-600 text-white text-xs font-bold px-2 py-1"
+                  >80%</span
+                >
+                <div class="flex items-start gap-3">
+                  <div
+                    class="h-10 w-10 rounded-xl bg-indigo-100 text-indigo-700 grid place-items-center"
+                  >
+                    <!-- language / globe -->
+                    <i class="fa-solid fa-crown"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold">Korean Language Scholarship</h3>
+                    <p class="mt-1 text-sm text-slate-600">
+                      Up to 80% tuition support for students in the Korean
+                      Language program.
+                    </p>
+                    <ul
+                      class="mt-3 space-y-1 text-sm text-slate-700 list-disc pl-4"
+                    >
+                      <li>
+                        Eligibility: Enrolled (or admitted) in Korean Language
+                        major
+                      </li>
+                      <li>
+                        Covers: Up to <strong>80% tuition</strong> (annual;
+                        limited quotas)
+                      </li>
+                      <li>
+                        Requirements: Placement/interview & maintain academic
+                        standing
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Life School Students — 20% -->
+              <article
+                class="relative rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition"
+                style="break-inside: avoid"
+              >
+                <span
+                  class="absolute right-4 top-4 rounded-full bg-amber-500 text-white text-xs font-bold px-2 py-1"
+                  >20%</span
+                >
+                <div class="flex items-start gap-3">
+                  <div
+                    class="h-10 w-10 rounded-xl bg-amber-100 text-amber-700 grid place-items-center"
+                  >
+                    <!-- graduation cap -->
+                    <i class="fa-solid fa-award"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold">Life School Students</h3>
+                    <p class="mt-1 text-sm text-slate-600">
+                      20% tuition discount for eligible students from Life
+                      School.
+                    </p>
+                    <ul
+                      class="mt-3 space-y-1 text-sm text-slate-700 list-disc pl-4"
+                    >
+                      <li>
+                        Eligibility: Graduates/Grade 12 from Life School (proof
+                        required)
+                      </li>
+                      <li>
+                        Covers: <strong>20% tuition</strong> (first year, unless
+                        stated)
+                      </li>
+                      <li>
+                        How to apply: Submit certification with your application
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Theology 100% + support -->
+              <article
+                class="relative rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition"
+                style="break-inside: avoid"
+              >
+                <span
+                  class="absolute right-4 top-4 rounded-full bg-rose-600 text-white text-xs font-bold px-2 py-1"
+                  >100% +</span
+                >
+                <div class="flex items-start gap-3">
+                  <div
+                    class="h-10 w-10 rounded-xl bg-rose-100 text-rose-700 grid place-items-center"
+                  >
+                    <!-- book/heart -->
+                    <i class="fa-solid fa-book-bible"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold">Theology Scholarship</h3>
+                    <p class="mt-1 text-sm text-slate-600">
+                      Full tuition plus additional support for Theology
+                      students.
+                    </p>
+                    <ul
+                      class="mt-3 space-y-1 text-sm text-slate-700 list-disc pl-4"
+                    >
+                      <li>Covers: 100% tuition</li>
+                      <li>Extras: Special financial/boarding support</li>
+                      <li>Programs: Theology (B.A., M.Div., etc.)</li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Notice / callout -->
+              <aside
+                class="rounded-2xl bg-gradient-to-br from-slate-50 to-indigo-50 border p-5"
+              >
+                <p class="font-semibold">Important</p>
+                <ul class="mt-2 text-sm text-slate-700 list-disc pl-4">
+                  <li>
+                    <span class="font-medium">Free dormitory</span> for students
+                    from provinces.
+                  </li>
+                  <li>Awards are limited and may require annual renewal.</li>
+                  <li>
+                    Please check exact terms, deadlines, and required documents
+                    with Admissions.
+                  </li>
+                </ul>
+                <div class="mt-4 flex flex-wrap gap-3">
+                  <a
+                    href="#contact"
+                    class="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-500"
+                  >
+                    Contact Admissions
+                  </a>
+                  <a
+                    href="#programs"
+                    class="inline-flex items-center gap-2 rounded-xl border border-indigo-200 px-4 py-2 text-indigo-700 font-semibold hover:bg-indigo-50"
+                  >
+                    Explore Programs
+                  </a>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS (Redesigned) -->
+    <section
+      id="partners"
+      class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16"
+    >
+      <div
+        class="relative rounded-3xl p-[1px] bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 shadow-xl"
+      >
+        <div class="rounded-3xl bg-white">
+          <div class="p-6 sm:p-8">
+            <!-- Header + controls -->
+            <div
+              class="flex flex-col md:flex-row md:items-end md:justify-between gap-4"
+            >
+              <div>
+                <h2 class="text-2xl font-extrabold tracking-tight">
+                  Opportunities to Study Abroad
+                </h2>
+                <p class="kh text-sm text-slate-500 mt-1" lang="km">
+                  សហប្រតិបត្តិការអន្តរជាតិ
+                </p>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2">
+                <!-- Search -->
+                <label for="partnerSearch" class="sr-only"
+                  >Search partners</label
+                >
+                <div class="relative">
+                  <input
+                    id="partnerSearch"
+                    type="text"
+                    placeholder="Search partner…"
+                    class="w-56 sm:w-64 rounded-xl border px-9 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="pointer-events-none absolute left-3 top-2.5 h-4 w-4 text-slate-400"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M10 4a6 6 0 104.47 10.03l4.25 4.25 1.42-1.42-4.25-4.25A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"
+                    />
+                  </svg>
+                </div>
+
+                <!-- Country filters -->
+                <div
+                  class="flex flex-wrap gap-2"
+                  role="tablist"
+                  aria-label="Filter by country"
+                >
+                  <button
+                    type="button"
+                    class="filter-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                    data-country="ALL"
+                    aria-pressed="true"
+                  >
+                    All
+                  </button>
+                  <button
+                    type="button"
+                    class="filter-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                    data-country="KR"
+                    aria-pressed="false"
+                  >
+                    KR
+                  </button>
+                  <button
+                    type="button"
+                    class="filter-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                    data-country="SG"
+                    aria-pressed="false"
+                  >
+                    SG
+                  </button>
+                  <button
+                    type="button"
+                    class="filter-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                    data-country="CN"
+                    aria-pressed="false"
+                  >
+                    CN
+                  </button>
+                  <button
+                    type="button"
+                    class="filter-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                    data-country="TW"
+                    aria-pressed="false"
+                  >
+                    TW
+                  </button>
+                  <button
+                    type="button"
+                    class="filter-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                    data-country="ID"
+                    aria-pressed="false"
+                  >
+                    ID
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grid -->
+            <div
+              id="partnerGrid"
+              class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm"
+            >
+              <!-- Card = simple divs (clickable optional) -->
+              <div
+                class="partner-card p-4 rounded-xl border bg-white hover:-translate-y-0.5 hover:shadow-md transition"
+                data-country="KR"
+                style="break-inside: avoid"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="h-10 w-10 rounded-full bg-indigo-100 text-indigo-700 font-bold grid place-items-center"
+                  >
+                    CA
+                  </div>
+                  <div>
+                    <div class="font-semibold">Chung Ang University</div>
+                    <div class="text-xs text-slate-500">South Korea</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="partner-card p-4 rounded-xl border bg-white hover:-translate-y-0.5 hover:shadow-md transition"
+                data-country="KR"
+                style="break-inside: avoid"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="h-10 w-10 rounded-full bg-violet-100 text-violet-700 font-bold grid place-items-center"
+                  >
+                    HD
+                  </div>
+                  <div>
+                    <div class="font-semibold">Handong University</div>
+                    <div class="text-xs text-slate-500">South Korea</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="partner-card p-4 rounded-xl border bg-white hover:-translate-y-0.5 hover:shadow-md transition"
+                data-country="KR"
+                style="break-inside: avoid"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="h-10 w-10 rounded-full bg-fuchsia-100 text-fuchsia-700 font-bold grid place-items-center"
+                  >
+                    HY
+                  </div>
+                  <div>
+                    <div class="font-semibold">Hanyang (3rd W.D.)</div>
+                    <div class="text-xs text-slate-500">South Korea</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="partner-card p-4 rounded-xl border bg-white hover:-translate-y-0.5 hover:shadow-md transition"
+                data-country="SG"
+                style="break-inside: avoid"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="h-10 w-10 rounded-full bg-amber-100 text-amber-700 font-bold grid place-items-center"
+                  >
+                    BIC
+                  </div>
+                  <div>
+                    <div class="font-semibold">
+                      Beacon International College
+                    </div>
+                    <div class="text-xs text-slate-500">Singapore</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="partner-card p-4 rounded-xl border bg-white hover:-translate-y-0.5 hover:shadow-md transition"
+                data-country="CN"
+                style="break-inside: avoid"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="h-10 w-10 rounded-full bg-rose-100 text-rose-700 font-bold grid place-items-center"
+                  >
+                    HH
+                  </div>
+                  <div>
+                    <div class="font-semibold">Hohai University</div>
+                    <div class="text-xs text-slate-500">China</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="partner-card p-4 rounded-xl border bg-white hover:-translate-y-0.5 hover:shadow-md transition"
+                data-country="TW"
+                style="break-inside: avoid"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="h-10 w-10 rounded-full bg-emerald-100 text-emerald-700 font-bold grid place-items-center"
+                  >
+                    NCU
+                  </div>
+                  <div>
+                    <div class="font-semibold">National Central University</div>
+                    <div class="text-xs text-slate-500">Taiwan</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="partner-card p-4 rounded-xl border bg-white hover:-translate-y-0.5 hover:shadow-md transition"
+                data-country="ID"
+                style="break-inside: avoid"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="h-10 w-10 rounded-full bg-cyan-100 text-cyan-700 font-bold grid place-items-center"
+                  >
+                    UK
+                  </div>
+                  <div>
+                    <div class="font-semibold">Universitas Kristen</div>
+                    <div class="text-xs text-slate-500">Indonesia</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- More link tile -->
+              <a
+                href="https://lifeun.edu.kh/partnerships/"
+                target="_blank"
+                rel="noopener"
+                class="partner-card p-4 rounded-xl border bg-slate-50 hover:bg-indigo-50 hover:-translate-y-0.5 hover:shadow-md transition font-medium"
+                data-country="ALL"
+                style="break-inside: avoid"
+              >
+                <div class="flex items-center justify-between gap-3">
+                  <div>
+                    <div>More partnerships →</div>
+                    <div class="text-xs text-slate-500">
+                      Open full list on our site
+                    </div>
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 text-slate-500"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z"
+                    />
+                    <path d="M5 5h6V3H3v8h2V5z" />
+                  </svg>
+                </div>
+              </a>
+            </div>
+
+            <!-- Empty state -->
+            <div
+              id="partnerEmpty"
+              class="hidden mt-6 text-center text-slate-500 text-sm"
+            >
+              No partners match your filter.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BROCHURE IMAGES (optional gallery of your two pages) -->
+    <section class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="text-2xl font-extrabold tracking-tight">
+        Full Brochure Preview
+      </h2>
+      <p class="text-sm text-slate-500">Use this as a quick flip preview.</p>
+      <div class="mt-5 grid md:grid-cols-2 gap-6">
+        <img
+          src="brochure1.jpg"
+          class="w-full rounded-xl border shadow-sm"
+          alt="Brochure Page 1"
+        />
+        <img
+          src="brochure2.jpg"
+          class="w-full rounded-xl border shadow-sm"
+          alt="Brochure Page 2"
+        />
+      </div>
+    </section>
+
+    <!-- CONTACT / APPLY (Redesigned) -->
+    <section
+      id="contact"
+      class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16"
+    >
+      <div class="grid lg:grid-cols-3 gap-8 items-stretch">
+        <!-- CTA + INFO (2 cols) -->
+        <div
+          class="lg:col-span-2 relative overflow-hidden rounded-2xl p-1 shadow-xl bg-indigo-600"
+        >
+          <div
+            class="relative rounded-2xl bg-white/10 backdrop-blur p-8 text-white"
+          >
+            <!-- subtle deco -->
+            <div
+              class="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-white/10 blur-3xl"
+            ></div>
+
+            <div
+              class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
+            >
+              <div>
+                <h2 class="text-3xl font-extrabold tracking-tight">
+                  Apply & Contact
+                </h2>
+                <p class="kh text-white/90 mt-1" lang="km">
+                  ដាក់ពាក្យចូលរៀន និងទំនាក់ទងមកកាន់សាកលវិទ្យាល័យឡាយហ្វ
+                </p>
+              </div>
+
+              <!-- Quick actions -->
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="#programs"
+                  class="inline-flex items-center gap-2 rounded-xl bg-amber-400 px-4 py-2 font-semibold text-slate-900 hover:bg-amber-300 shadow"
+                >
+                  <!-- icon -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 6v12m6-6H6"
+                    />
+                  </svg>
+                  Apply Now
+                </a>
+                <a
+                  href="tel:+85581929195"
+                  class="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2 font-semibold text-white hover:bg-white/25"
+                >
+                  <i class="fa-solid fa-phone"></i>
+                  Call Now
+                </a>
+              </div>
+            </div>
+
+            <!-- Info cards -->
+            <div class="mt-8 grid md:grid-cols-2 gap-6">
+              <!-- Phones -->
+              <div class="rounded-xl bg-white/10 p-5 border border-white/10">
+                <div class="font-semibold flex items-center gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 opacity-90"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 5a2 2 0 012-2h1.28a2 2 0 011.94 1.5l.54 2a2 2 0 01-.5 1.93L7.4 9.4a16 16 0 006.2 6.2l.97-1.36a2 2 0 011.93-.5l2 .54A2 2 0 0120 16.72V18a2 2 0 01-2 2h-.5C10.49 20 4 13.51 4 6.5V6a2 2 0 012-2z"
+                    />
+                  </svg>
+                  Phone
+                </div>
+
+                <div class="mt-3 space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <a
+                      href="tel:+85581929195"
+                      class="underline-offset-2 hover:underline"
+                      >(+855) 81 92 91 95</a
+                    >
+                    <button
+                      data-copy="+85581929195"
+                      class="copy-btn rounded-lg bg-white/15 px-2 py-1 text-xs hover:bg-white/25"
+                    >
+                      Copy
+                    </button>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <a
+                      href="tel:+85578966877"
+                      class="underline-offset-2 hover:underline"
+                      >(+855) 78 966 877</a
+                    >
+                    <button
+                      data-copy="+85578966877"
+                      class="copy-btn rounded-lg bg-white/15 px-2 py-1 text-xs hover:bg-white/25"
+                    >
+                      Copy
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Online -->
+              <div class="rounded-xl bg-white/10 p-5 border border-white/10">
+                <div class="font-semibold flex items-center gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 opacity-90"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-3.31 0-6 2.02-6 4.5V20h12v-1.5c0-2.48-2.69-4.5-6-4.5z"
+                    />
+                  </svg>
+                  Online
+                </div>
+
+                <ul class="mt-3 space-y-2 text-white/90">
+                  <li>
+                    <a
+                      class="inline-flex items-center gap-2 hover:underline"
+                      href="https://www.lifeun.edu.kh"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.68 6.6h-2.06a15.8 15.8 0 00-.9-2.76 8.04 8.04 0 012.96 2.76zM12 4.04c.62.84 1.17 1.96 1.56 3.26H10.4c.4-1.3.94-2.42 1.6-3.26zM8.28 8.6H6.2a8.03 8.03 0 012.94-2.75c-.38.8-.68 1.76-.86 2.75zm0 1.8c.18.98.48 1.95.86 2.75A8.03 8.03 0 016.2 10.4h2.08zM10.4 10.4h3.16c-.4 1.3-.94 2.41-1.56 3.25-.66-.84-1.2-1.95-1.6-3.25zM17.32 10.4a8.04 8.04 0 01-2.96 2.75c.38-.8.68-1.77.86-2.75h2.1zM8.94 15.16a15.7 15.7 0 00.9 2.76 8.04 8.04 0 01-2.96-2.76h2.06zm1.46 0h3.2c-.39 1.3-.94 2.42-1.56 3.26-.66-.84-1.2-1.96-1.64-3.26zm4.72 0h2.06a8.04 8.04 0 01-2.96 2.76c.38-.8.68-1.76.9-2.76z"
+                        />
+                      </svg>
+                      www.lifeun.edu.kh
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="inline-flex items-center gap-2 hover:underline"
+                      href="mailto:admin@lifeun.edu.kh"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M20 4H4a2 2 0 00-2 2v.4l10 6.25L22 6.4V6a2 2 0 00-2-2zm0 4.05l-7.73 4.83a2 2 0 01-2.54 0L2 8.05V18a2 2 0 002 2h16a2 2 0 002-2V8.05z"
+                        />
+                      </svg>
+                      admin@lifeun.edu.kh
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="inline-flex items-center gap-2 hover:underline"
+                      href="https://www.facebook.com/LifeUniversityOfficial"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <!-- Facebook -->
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.21 10.44 22v-7.02H7.9v-2.9h2.54V9.86c0-2.51 1.5-3.9 3.8-3.9 1.1 0 2.26.2 2.26.2v2.48h-1.27c-1.25 0-1.64.78-1.64 1.58v1.9h2.8l-.45 2.9h-2.35V22C18.34 21.21 22 17.08 22 12.06z"
+                        />
+                      </svg>
+                      Facebook: LIFE UNIVERSITY
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="inline-flex items-center gap-2 hover:underline"
+                      href="https://www.youtube.com/@lifemissiontv9974"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <!-- YouTube -->
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M21.6 7.2a3 3 0 00-2.1-2.1C17.8 4.6 12 4.6 12 4.6s-5.8 0-7.5.5A3 3 0 002.4 7.2 31 31 0 002 12a31 31 0 00.4 4.8 3 3 0 002.1 2.1c1.7.5 7.5.5 7.5.5s5.8 0 7.5-.5a3 3 0 002.1-2.1A31 31 0 0022 12a31 31 0 00-.4-4.8zM10 14.7V9.3L15 12l-5 2.7z"
+                        />
+                      </svg>
+                      YouTube: Life Mission TV
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- tiny note -->
+            <p class="mt-6 text-xs text-white/80">
+              *Free dormitory available for students from provinces.
+            </p>
+          </div>
+        </div>
+
+        <!-- QR CARD -->
+        <div
+          class="rounded-2xl bg-white p-6 shadow border flex flex-col items-center justify-center"
+        >
+          <img
+            src="qr-bro.png"
+            alt="Registration QR"
+            class="h-44 w-44 object-contain"
+          />
+          <p class="mt-3 text-center text-sm text-slate-600">
+            More information
+          </p>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdogje43LBRV8dLblyaMM1Hnw7MlaC6zpEvQ3s5G2aF7rmKcg/viewform"
+            target="_blank"
+            rel="noopener"
+            class="mt-4 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-500"
+          >
+            Register Now
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z" />
+              <path d="M5 5h6V3H3v8h2V5z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back-to-top button -->
+    <button
+      id="backToTop"
+      type="button"
+      aria-label="Back to top"
+      title="Back to top"
+      data-effect="spring"
+      class="noprint fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 inline-flex items-center justify-center rounded-full bg-indigo-600 text-white shadow-lg hover:bg-indigo-500 h-12 w-12 transition transform opacity-0 pointer-events-none translate-y-3"
+    >
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <footer class="border-t bg-white">
+      <div
+        class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 text-sm text-slate-600 flex flex-col sm:flex-row gap-2 items-center justify-between"
+      >
+        <div>© 2025 Life University — All rights reserved.</div>
+        <div class="opacity-70">
+          Free dormitory available for students from provinces*
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+<script
+  src="https://kit.fontawesome.com/YOUR_KIT_CODE.js"
+  crossorigin="anonymous"
+></script>
+
+<script>
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const val = btn.getAttribute("data-copy");
+      try {
+        await navigator.clipboard.writeText(val);
+        const old = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => (btn.textContent = old), 1200);
+      } catch {
+        alert("Copy failed. Please copy manually: " + val);
+      }
+    });
+  });
+</script>
+<!-- Tiny filter script (no dependencies) -->
+<script>
+  (function () {
+    const grid = document.getElementById("partnerGrid");
+    const cards = Array.from(grid.querySelectorAll(".partner-card"));
+    const btns = Array.from(document.querySelectorAll(".filter-btn"));
+    const search = document.getElementById("partnerSearch");
+    const empty = document.getElementById("partnerEmpty");
+
+    let activeCountry = "ALL";
+
+    // Style active button
+    function setActive(btn) {
+      btns.forEach((b) => {
+        b.setAttribute("aria-pressed", "false");
+        b.classList.remove("bg-indigo-600", "text-white", "border-indigo-600");
+      });
+      btn.setAttribute("aria-pressed", "true");
+      btn.classList.add("bg-indigo-600", "text-white", "border-indigo-600");
+    }
+
+    function applyFilters() {
+      const q = (search.value || "").trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach((card) => {
+        const country = card.getAttribute("data-country");
+        const text = card.textContent.toLowerCase();
+        const matchCountry =
+          activeCountry === "ALL" ||
+          country === activeCountry ||
+          country === "ALL";
+        const matchText = !q || text.includes(q);
+        const show = matchCountry && matchText;
+
+        card.classList.toggle("hidden", !show);
+        if (show) visible++;
+      });
+
+      empty.classList.toggle("hidden", visible > 0);
+    }
+
+    btns.forEach((btn) => {
+      // default active = All
+      if (btn.dataset.country === "ALL") setActive(btn);
+      btn.addEventListener("click", () => {
+        activeCountry = btn.dataset.country;
+        setActive(btn);
+        applyFilters();
+      });
+    });
+
+    search.addEventListener("input", applyFilters);
+    applyFilters();
+  })();
+</script>
+
+<!-- Tiny logic: filter, sort, USD↔KHR -->
+<script>
+  (function () {
+    const grid = document.getElementById("progGrid");
+    const cards = Array.from(grid.querySelectorAll(".program-card"));
+    const search = document.getElementById("progSearch");
+    const empty = document.getElementById("progEmpty");
+    const sortEl = document.getElementById("progSort");
+    const btns = Array.from(document.querySelectorAll(".deg-btn"));
+    const toggle = document.getElementById("curToggle");
+
+    // EDIT ME: KHR exchange rate
+    const KHR_RATE = 4100; // 1 USD ≈ 4100 KHR (adjust as needed)
+
+    let activeDeg = "ALL";
+    let currencyKHR = false;
+
+    function fmtUSD(v) {
+      return "$" + Number(v).toLocaleString();
+    }
+    function fmtKHR(v) {
+      return "៛" + Math.round(v).toLocaleString();
+    }
+
+    function updatePrices() {
+      document.querySelectorAll(".js-price").forEach((el) => {
+        const usd = parseFloat(el.dataset.usd || "0");
+        el.textContent = currencyKHR ? fmtKHR(usd * KHR_RATE) : fmtUSD(usd);
+      });
+    }
+
+    function setActive(btn) {
+      btns.forEach((b) => {
+        b.setAttribute("aria-pressed", "false");
+        b.classList.remove("bg-indigo-600", "text-white", "border-indigo-600");
+      });
+      btn.setAttribute("aria-pressed", "true");
+      btn.classList.add("bg-indigo-600", "text-white", "border-indigo-600");
+    }
+
+    function applyFilters() {
+      const q = (search.value || "").trim().toLowerCase();
+      let visible = 0;
+      cards.forEach((card) => {
+        const levels = (card.dataset.levels || "")
+          .split(",")
+          .map((s) => s.trim());
+        const text = card.textContent.toLowerCase();
+        const matchDeg = activeDeg === "ALL" || levels.includes(activeDeg);
+        const matchText = !q || text.includes(q);
+        const show = matchDeg && matchText;
+        card.classList.toggle("hidden", !show);
+        if (show) visible++;
+      });
+      empty.classList.toggle("hidden", visible > 0);
+    }
+
+    function applySort() {
+      const mode = sortEl.value;
+      if (mode === "default") return; // keep original DOM order
+      const sorted = [...cards].sort((a, b) => {
+        const pa = parseFloat(a.dataset.priceUsd),
+          pb = parseFloat(b.dataset.priceUsd);
+        return mode === "price-asc" ? pa - pb : pb - pa;
+      });
+      sorted.forEach((c) => grid.appendChild(c));
+    }
+
+    // Events
+    btns.forEach((btn) => {
+      if (btn.dataset.deg === "ALL") setActive(btn);
+      btn.addEventListener("click", () => {
+        activeDeg = btn.dataset.deg;
+        setActive(btn);
+        applyFilters();
+      });
+    });
+
+    search.addEventListener("input", applyFilters);
+    sortEl.addEventListener("change", () => {
+      applySort();
+    });
+
+    // Currency toggle
+    toggle.addEventListener("click", () => {
+      const on = toggle.getAttribute("data-on") === "true";
+      toggle.setAttribute("data-on", String(!on));
+      toggle.setAttribute("aria-pressed", String(!on));
+      currencyKHR = !on;
+      updatePrices();
+    });
+
+    // Init
+    updatePrices();
+    applyFilters();
+  })();
+</script>
+
+<script>
+  (function () {
+    const btn = document.getElementById("menuButton");
+    const mob = document.getElementById("mobileMenu");
+    const iconHam = document.getElementById("iconHamburger");
+    const iconClose = document.getElementById("iconClose");
+    const progress = document.getElementById("scrollProgress");
+    const desktopLinks = Array.from(document.querySelectorAll("a.nav-link"));
+    const sections = desktopLinks
+      .map((a) => document.querySelector(a.getAttribute("href")))
+      .filter(Boolean);
+
+    // Mobile toggle
+    btn?.addEventListener("click", () => {
+      const isOpen = mob.classList.toggle("hidden") === false;
+      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      iconHam.classList.toggle("hidden", isOpen);
+      iconClose.classList.toggle("hidden", !isOpen);
+    });
+    // Close mobile on link click
+    mob?.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        mob.classList.add("hidden");
+        btn.setAttribute("aria-expanded", "false");
+        iconHam.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+      }),
+    );
+
+    // Scroll progress + subtle shadow on scroll
+    const onScroll = () => {
+      const sc = window.scrollY || document.documentElement.scrollTop;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = Math.min(100, (sc / Math.max(1, h)) * 100) + "%";
+      document.getElementById("navBar").classList.toggle("shadow", sc > 2);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Active link highlight (IntersectionObserver)
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const idx = sections.indexOf(entry.target);
+          if (idx > -1 && entry.isIntersecting) {
+            desktopLinks.forEach((l) => l.classList.remove("active"));
+            desktopLinks[idx].classList.add("active");
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+    );
+
+    sections.forEach((sec) => io.observe(sec));
+  })();
+</script>
+
+<script>
+  (function () {
+    const btn = document.getElementById("backToTop");
+    const SHOW_AT = 300; // px before showing
+
+    function setVisible(v) {
+      btn.classList.toggle("opacity-0", !v);
+      btn.classList.toggle("pointer-events-none", !v);
+      btn.classList.toggle("translate-y-3", !v);
+      btn.classList.toggle("translate-y-0", v);
+      btn.classList.toggle("opacity-100", v);
+    }
+    const onScroll = () =>
+      setVisible(
+        (window.scrollY || document.documentElement.scrollTop) > SHOW_AT,
+      );
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // --- Custom animated scroll-to-top with styles ---
+    function animateToTop(effect = "ease") {
+      const startY = window.scrollY || document.documentElement.scrollTop;
+      if (startY <= 0) return;
+
+      // timings
+      const dur = effect === "spring" ? 700 : effect === "steps" ? 600 : 500;
+      const t0 = performance.now();
+
+      // easings
+      const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+      const springLike = (t) =>
+        1 - Math.exp(-6 * t) * Math.cos((t * 2 * Math.PI) / 0.7); // springy feel
+      const stepped = (t) => Math.ceil(t * 8) / 8; // 8 steps
+
+      function frame(now) {
+        const t = Math.min(1, (now - t0) / dur);
+        let e;
+        switch (effect) {
+          case "spring":
+            e = Math.min(1, springLike(t));
+            break;
+          case "steps":
+            e = stepped(t);
+            break;
+          default:
+            e = easeOutCubic(t);
+        }
+        const y = Math.max(0, Math.round(startY * (1 - e)));
+        window.scrollTo(0, y);
+        if (t < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    // Click: add a tiny tap animation + scroll
+    btn.addEventListener("click", () => {
+      btn.classList.add("tap");
+      setTimeout(() => btn.classList.remove("tap"), 200);
+      animateToTop(btn.getAttribute("data-effect") || "ease");
+    });
+  })();
+</script>
