@@ -93,16 +93,77 @@
         position: absolute;
         right: 12px;
         top: 12px;
-        background: linear-gradient(135deg, #60a5fa, #1e3a8a); /* blue pill */
-        color: #fff;
+        background: rgba(255, 255, 255, 0.96);
+        color: #1e3a8a;
         padding: 0.35rem 0.6rem;
         font-weight: 700;
         border-radius: 9999px;
+        border: 1px solid rgba(191, 219, 254, 0.9);
         font-size: 0.8rem;
-        box-shadow: 0 8px 18px rgba(30, 58, 138, 0.15);
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
         display: inline-flex;
         align-items: baseline;
         gap: 0.25rem;
+        backdrop-filter: blur(8px);
+      }
+
+      #programs .price-pill.discount-price {
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      #programs .old-price {
+        font-size: 0.68rem;
+        font-weight: 600;
+        opacity: 0.75;
+        text-decoration: line-through;
+      }
+
+      #programs .program-card {
+        border-color: rgba(226, 232, 240, 0.95);
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+        min-height: 100%;
+      }
+
+      #programs .program-card img {
+        transition: transform 220ms ease;
+      }
+
+      #programs .program-card:hover img {
+        transform: scale(1.04);
+      }
+
+      #programs .program-card h3 {
+        color: #0f172a;
+        line-height: 1.35;
+      }
+
+      .program-toolbar {
+        background: #fff;
+      }
+
+      .program-shell {
+        background:
+          linear-gradient(180deg, #ffffff 0%, #ffffff 74%, #f8fafc 100%);
+      }
+
+      .program-stat {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+      }
+
+      .program-accent {
+        height: 4px;
+        background: linear-gradient(90deg, #1e40af, #60a5fa, #fbbf24);
+      }
+
+      .program-control-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.75rem;
       }
 
       /* Override common Tailwind color utilities to a blue palette */
@@ -175,44 +236,192 @@
         }
       }
       /* --- Mobile improvements --- */
-      /* Make the mobile menu a full-screen, scrollable panel when visible */
-      #mobileMenu {
-        position: fixed;
-        inset: 0; /* top:0; right:0; bottom:0; left:0 */
-        background: rgba(255, 255, 255, 0.98);
-        z-index: 60;
-        padding-top: 4rem; /* room for header */
-        transition:
-          transform 220ms ease,
-          opacity 180ms ease;
-        -webkit-overflow-scrolling: touch;
-      }
-      #mobileMenu.hidden {
-        display: none;
-        transform: translateY(100%);
-        opacity: 0;
-      }
-      #mobileMenu:not(.hidden) {
-        display: block;
-        transform: translateY(0);
-        opacity: 1;
-        overflow-y: auto;
+      .brand-motto,
+      .brand-khmer {
+        white-space: nowrap;
       }
 
-      /* Larger touch targets for mobile links and controls */
+      #menuButton {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.75rem;
+        min-width: 2.75rem;
+        border: 1px solid rgba(191, 219, 254, 0.9);
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: 0 8px 22px rgba(30, 58, 138, 0.1);
+        transition:
+          background-color 160ms ease,
+          border-color 160ms ease,
+          transform 160ms ease;
+      }
+
+      #menuButton:hover,
+      #menuButton:focus-visible {
+        border-color: rgba(96, 165, 250, 0.9);
+        background: rgba(239, 246, 255, 0.95);
+        transform: translateY(-1px);
+        outline: none;
+      }
+
+      @media (min-width: 768px) {
+        #menuButton,
+        #mobileMenu {
+          display: none !important;
+        }
+      }
+
+      #mobileMenu {
+        position: absolute;
+        left: max(1rem, env(safe-area-inset-left));
+        right: max(1rem, env(safe-area-inset-right));
+        top: calc(100% + 0.55rem);
+        overflow: hidden;
+        border: 1px solid rgba(191, 219, 254, 0.8);
+        border-radius: 1.1rem;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(239, 246, 255, 0.97));
+        box-shadow: 0 24px 56px rgba(15, 23, 42, 0.18);
+        transform-origin: top center;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      #mobileMenu:not(.hidden) {
+        animation: navDrop 180ms ease-out both;
+      }
+
       .mobile-link {
-        padding: 0.9rem 1.1rem;
-        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.85rem;
+        min-height: 3.1rem;
+        border-radius: 0.85rem;
+        padding: 0.8rem 0.9rem;
+        font-weight: 700;
+        color: #1e293b;
+        transition:
+          background-color 160ms ease,
+          color 160ms ease,
+          transform 160ms ease;
+      }
+
+      .mobile-link .mobile-link-main {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        min-width: 0;
+      }
+
+      .mobile-link .mobile-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
         border-radius: 0.75rem;
+        background: #dbeafe;
+        color: #1e40af;
+        flex: 0 0 auto;
+      }
+
+      .mobile-link .mobile-arrow {
+        color: #94a3b8;
+        font-size: 0.75rem;
+        text-align: center;
+      }
+
+      .mobile-link:hover,
+      .mobile-link:focus-visible {
+        background: #eff6ff;
+        color: #1e3a8a;
+        transform: translateX(2px);
+        outline: none;
+      }
+
+      .mobile-link:hover .mobile-icon,
+      .mobile-link:focus-visible .mobile-icon {
+        background: #1e40af;
+        color: #fff;
+      }
+
+      .mobile-cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        min-height: 3.05rem;
+        border-radius: 0.95rem;
+        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        color: #111827;
+        font-weight: 800;
+        box-shadow: 0 12px 24px rgba(245, 158, 11, 0.22);
+        transition:
+          transform 160ms ease,
+          box-shadow 160ms ease,
+          filter 160ms ease;
+      }
+
+      .mobile-cta:hover,
+      .mobile-cta:focus-visible {
+        filter: brightness(1.03);
+        transform: translateY(-1px);
+        box-shadow: 0 16px 28px rgba(245, 158, 11, 0.28);
+        outline: none;
+      }
+
+      @keyframes navDrop {
+        from {
+          opacity: 0;
+          transform: translateY(-8px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @media (max-width: 430px) {
+        .brand-motto {
+          display: none;
+        }
+
+        .brand-title {
+          font-size: 0.98rem;
+        }
+
+        .brand-logo {
+          height: 2.25rem;
+          width: 2.25rem;
+          border-radius: 0.75rem;
+        }
       }
 
       /* Slightly adjust price-pill on small screens to avoid overflow */
       @media (max-width: 640px) {
+        #programs .program-card {
+          border-radius: 1rem;
+        }
+
         #programs .price-pill {
           right: 8px;
           top: 8px;
           padding: 0.25rem 0.5rem;
           font-size: 0.75rem;
+        }
+
+        #programs .old-price {
+          font-size: 0.62rem;
+        }
+
+        .program-control-row {
+          display: grid;
+          grid-template-columns: 1fr;
+          align-items: stretch;
+        }
+
+        .program-control-row select {
+          width: 100%;
         }
 
         /* Make program/partner cards more vertical-friendly */
@@ -249,7 +458,7 @@
     <header id="siteHeader" class="sticky top-0 z-50 noprint">
       <nav
         id="navBar"
-        class="glass border-b border-white/40 transition-all duration-300"
+        class="glass relative border-b border-white/40 transition-all duration-300"
       >
         <div
           class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
@@ -258,28 +467,28 @@
           <a
             href="#hero"
             aria-label="Life University — Home"
-            class="group inline-flex items-center gap-3"
+            class="group inline-flex min-w-0 items-center gap-3"
           >
             <!-- Emblem -->
             <img
               src="re_lu.png"
               alt="Life University logo"
-              class="h-10 w-10 rounded-xl object-cover ring-1 ring-black/5 shadow-sm"
+              class="brand-logo h-10 w-10 shrink-0 rounded-xl object-cover ring-1 ring-black/5 shadow-sm"
             />
 
             <!-- Wordmark -->
-            <div class="leading-tight">
+            <div class="min-w-0 leading-tight">
               <div
-                class="text-lg font-extrabold tracking-tight text-slate-900 transition-colors group-hover:text-indigo-700"
+                class="brand-title truncate text-lg font-extrabold tracking-tight text-slate-900 transition-colors group-hover:text-indigo-700"
               >
                 Life University
               </div>
               <div
-                class="mt-[2px] flex items-center gap-2 text-[11px] text-slate-600"
+                class="mt-[2px] flex min-w-0 items-center gap-2 text-[11px] text-slate-600"
               >
                 <span class="kh" lang="km">សាកលវិទ្យាល័យឡាយហ្វ</span>
                 <span class="hidden sm:inline text-slate-400">•</span>
-                <span class="tracking-widest uppercase"
+                <span class="brand-motto hidden tracking-widest uppercase sm:inline"
                   >Truth • Love • Integrity</span
                 >
               </div>
@@ -318,7 +527,9 @@
           <!-- Mobile toggle -->
           <button
             id="menuButton"
-            class="md:hidden p-2 rounded-lg hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            type="button"
+            class="md:hidden rounded-xl text-indigo-900"
+            aria-label="Open navigation menu"
             aria-expanded="false"
             aria-controls="mobileMenu"
           >
@@ -328,33 +539,53 @@
         </div>
 
         <!-- Mobile menu -->
-        <div id="mobileMenu" class="md:hidden hidden border-t border-white/30">
-          <div class="px-4 py-3 grid gap-2 text-slate-800">
-            <a
-              href="#about"
-              class="mobile-link rounded-lg px-3 py-2 hover:bg-indigo-50"
-              >About</a
-            >
-            <a
-              href="#programs"
-              class="mobile-link rounded-lg px-3 py-2 hover:bg-indigo-50"
-              >Programs</a
-            >
-            <a
-              href="#scholarships"
-              class="mobile-link rounded-lg px-3 py-2 hover:bg-indigo-50"
-              >Scholarships</a
-            >
-            <a
-              href="#partners"
-              class="mobile-link rounded-lg px-3 py-2 hover:bg-indigo-50"
-              >Partners</a
-            >
-            <a
-              href="#contact"
-              class="mobile-link rounded-lg px-3 py-2 hover:bg-indigo-50"
-              >Contact</a
-            >
+        <div id="mobileMenu" class="md:hidden hidden">
+          <div class="border-b border-blue-100 px-4 py-3">
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-700">
+              Life University
+            </p>
+            <p class="mt-0.5 text-sm text-slate-500">Admissions 2025-2026</p>
+          </div>
+          <div class="grid gap-1.5 px-3 py-3 text-slate-800">
+            <a href="#about" class="mobile-link">
+              <span class="mobile-link-main">
+                <span class="mobile-icon"><i class="fa-solid fa-building-columns"></i></span>
+                <span>About</span>
+              </span>
+              <i class="mobile-arrow fa-solid fa-chevron-right"></i>
+            </a>
+            <a href="#programs" class="mobile-link">
+              <span class="mobile-link-main">
+                <span class="mobile-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+                <span>Programs</span>
+              </span>
+              <i class="mobile-arrow fa-solid fa-chevron-right"></i>
+            </a>
+            <a href="#scholarships" class="mobile-link">
+              <span class="mobile-link-main">
+                <span class="mobile-icon"><i class="fa-solid fa-award"></i></span>
+                <span>Scholarships</span>
+              </span>
+              <i class="mobile-arrow fa-solid fa-chevron-right"></i>
+            </a>
+            <a href="#partners" class="mobile-link">
+              <span class="mobile-link-main">
+                <span class="mobile-icon"><i class="fa-solid fa-handshake"></i></span>
+                <span>Partners</span>
+              </span>
+              <i class="mobile-arrow fa-solid fa-chevron-right"></i>
+            </a>
+            <a href="#contact" class="mobile-link">
+              <span class="mobile-link-main">
+                <span class="mobile-icon"><i class="fa-solid fa-address-book"></i></span>
+                <span>Contact</span>
+              </span>
+              <i class="mobile-arrow fa-solid fa-chevron-right"></i>
+            </a>
+            <a href="#contact" class="mobile-cta mt-2">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Apply Now</span>
+            </a>
             <!-- <button
               onclick="window.print()"
               class="mt-2 w-full rounded-xl bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-500 shadow"
@@ -690,31 +921,56 @@
     <!-- PROGRAMS & FEES (Redesigned) -->
     <section
       id="programs"
-      class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16"
+      class="section bg-white py-14 sm:py-16"
     >
-      <!-- gradient frame -->
-      <div
-        class="relative rounded-3xl p-[1px] bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 shadow-xl"
-      >
-        <div class="rounded-3xl bg-white">
-          <div class="p-6 sm:p-8">
-            <!-- Header -->
-            <div class="flex items-end justify-between flex-wrap gap-4">
-              <div>
-                <h2 class="text-2xl font-extrabold tracking-tight">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="program-shell overflow-hidden rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/60">
+          <div class="program-accent"></div>
+          <!-- Header -->
+          <div class="px-5 pb-5 pt-6 sm:px-8 sm:pb-6 lg:px-10 lg:pt-8">
+            <div class="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+              <div class="max-w-2xl">
+                <p class="text-xs font-semibold uppercase tracking-widest text-blue-700">
+                  Admissions 2025-2026
+                </p>
+                <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
                   Programs & Fees
                 </h2>
-                <span class="kh block text-sm text-slate-500" lang="km"
-                  >កម្មវិធីសិក្សា និងតម្លៃ</span
-                >
+                <span class="kh mt-1 block text-sm text-slate-500" lang="km"
+                  >កម្មវិធីសិក្សា និងតម្លៃ</span>
+                <p class="mt-3 text-sm leading-6 text-slate-600">
+                  Browse available degrees, compare yearly tuition, and switch
+                  between USD and KHR.
+                </p>
               </div>
-              <p class="text-sm text-slate-500">
-                *Fees shown are per year (edit rate if needed).
-              </p>
-            </div>
 
+              <div class="grid grid-cols-3 gap-2 text-center sm:min-w-[360px]">
+                <div class="program-stat rounded-2xl p-3">
+                  <div class="text-xl font-extrabold text-slate-950">8</div>
+                  <div class="text-[11px] uppercase tracking-wide text-slate-500">
+                    Programs
+                  </div>
+                </div>
+                <div class="program-stat rounded-2xl p-3">
+                  <div class="text-xl font-extrabold text-slate-950">$500+</div>
+                  <div class="text-[11px] uppercase tracking-wide text-slate-500">
+                    From
+                  </div>
+                </div>
+                <div class="program-stat rounded-2xl p-3">
+                  <div class="text-xl font-extrabold text-slate-950">3</div>
+                  <div class="text-[11px] uppercase tracking-wide text-slate-500">
+                    Levels
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-5 pb-6 sm:px-8 sm:pb-8 lg:px-10 lg:pb-10">
             <!-- Controls -->
-            <div class="mt-5 flex flex-wrap items-center gap-3">
+            <div class="program-toolbar rounded-2xl border border-slate-200 p-3 shadow-sm sm:p-4">
+              <div class="grid gap-3 lg:grid-cols-[minmax(220px,1fr)_auto_auto] lg:items-center">
               <!-- Search -->
               <label for="progSearch" class="sr-only">Search programs</label>
               <div class="relative">
@@ -722,11 +978,11 @@
                   id="progSearch"
                   type="text"
                   placeholder="Search program…"
-                  class="w-64 rounded-xl border px-9 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  class="w-full rounded-xl border border-slate-200 bg-slate-50 px-10 py-3 text-sm placeholder:text-slate-400 focus:border-blue-300 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
                 />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="pointer-events-none absolute left-3 top-2.5 h-4 w-4 text-slate-400"
+                  class="pointer-events-none absolute left-3 top-3.5 h-4 w-4 text-slate-400"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
@@ -738,13 +994,13 @@
 
               <!-- Degree filters -->
               <div
-                class="flex flex-wrap gap-2"
+                class="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap"
                 role="tablist"
                 aria-label="Filter by degree"
               >
                 <button
                   type="button"
-                  class="deg-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                  class="deg-btn rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-600 hover:bg-blue-50"
                   data-deg="ALL"
                   aria-pressed="true"
                 >
@@ -752,7 +1008,7 @@
                 </button>
                 <button
                   type="button"
-                  class="deg-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                  class="deg-btn rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-600 hover:bg-blue-50"
                   data-deg="B"
                   aria-pressed="false"
                 >
@@ -760,7 +1016,7 @@
                 </button>
                 <button
                   type="button"
-                  class="deg-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                  class="deg-btn rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-600 hover:bg-blue-50"
                   data-deg="A"
                   aria-pressed="false"
                 >
@@ -768,7 +1024,7 @@
                 </button>
                 <button
                   type="button"
-                  class="deg-btn rounded-full border px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-indigo-50"
+                  class="deg-btn rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-600 hover:bg-blue-50"
                   data-deg="M"
                   aria-pressed="false"
                 >
@@ -777,22 +1033,23 @@
               </div>
 
               <!-- Sort -->
-              <div class="ml-auto flex items-center gap-2">
+              <div class="program-control-row">
+                <div class="flex items-center gap-2">
                 <label for="progSort" class="text-xs text-slate-500"
                   >Sort</label
                 >
                 <select
                   id="progSort"
-                  class="rounded-xl border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100"
                 >
                   <option value="default">Default</option>
                   <option value="price-asc">Price: Low → High</option>
                   <option value="price-desc">Price: High → Low</option>
                 </select>
-              </div>
+                </div>
 
               <!-- Currency toggle -->
-              <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2">
                 <span class="text-xs text-slate-500">USD</span>
                 <button
                   id="curToggle"
@@ -806,18 +1063,20 @@
                   ></span>
                 </button>
                 <span class="text-xs text-slate-500">KHR</span>
+                </div>
+              </div>
               </div>
             </div>
 
             <!-- Grid -->
             <div
               id="progGrid"
-              class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              class="mt-6 grid gap-4 sm:grid-cols-2 lg:gap-5 xl:grid-cols-4"
             >
               <!-- Card template: data-levels can contain comma-separated values e.g. "B,A" -->
               <!-- Business cluster -->
               <article
-                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                class="program-card relative overflow-hidden rounded-2xl border bg-white transition hover:-translate-y-1 hover:shadow-lg"
                 data-levels="B"
                 data-price-usd="550"
               >
@@ -844,7 +1103,7 @@
 
               <!-- Computer Science -->
               <article
-                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                class="program-card relative overflow-hidden rounded-2xl border bg-white transition hover:-translate-y-1 hover:shadow-lg"
                 data-levels="B"
                 data-price-usd="550"
               >
@@ -869,7 +1128,7 @@
 
               <!-- Civil Engineering -->
               <article
-                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                class="program-card relative overflow-hidden rounded-2xl border bg-white transition hover:-translate-y-1 hover:shadow-lg"
                 data-levels="B"
                 data-price-usd="550"
               >
@@ -894,7 +1153,7 @@
 
               <!-- Languages -->
               <article
-                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                class="program-card relative overflow-hidden rounded-2xl border bg-white transition hover:-translate-y-1 hover:shadow-lg"
                 data-levels="B"
                 data-price-usd="550"
               >
@@ -921,12 +1180,13 @@
 
               <!-- Nursing & Midwifery -->
               <article
-                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                class="program-card relative overflow-hidden rounded-2xl border bg-white transition hover:-translate-y-1 hover:shadow-lg"
                 data-levels="B,A"
-                data-price-usd="1000"
+                data-price-usd="500"
               >
-                <div class="price-pill">
-                  <span class="js-price" data-usd="1000"></span
+                <div class="price-pill discount-price">
+                  <span class="old-price">$1,000</span>
+                  <span class="js-price" data-usd="500"></span
                   ><span class="text-[10px] opacity-80">/year</span>
                 </div>
                 <img
@@ -946,7 +1206,7 @@
 
               <!-- Sports Management & Coaching -->
               <article
-                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                class="program-card relative overflow-hidden rounded-2xl border bg-white transition hover:-translate-y-1 hover:shadow-lg"
                 data-levels="B,A"
                 data-price-usd="550"
               >
@@ -973,7 +1233,7 @@
 
               <!-- Theology -->
               <article
-                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition"
+                class="program-card relative overflow-hidden rounded-2xl border bg-white transition hover:-translate-y-1 hover:shadow-lg"
                 data-levels="B,A"
                 data-price-usd="550"
               >
@@ -998,7 +1258,7 @@
 
               <!-- Master Programs -->
               <article
-                class="program-card relative rounded-2xl bg-white shadow border overflow-hidden hover:shadow-md transition sm:col-span-2 lg:col-span-3"
+                class="program-card relative overflow-hidden rounded-2xl border bg-white transition hover:-translate-y-1 hover:shadow-lg sm:col-span-2 xl:col-span-4"
                 data-levels="M"
                 data-price-usd="880"
               >
@@ -1615,19 +1875,17 @@
       id="contact"
       class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16"
     >
-      <div class="grid lg:grid-cols-3 gap-8 items-stretch">
-        <!-- CTA + INFO (2 cols) -->
-        <div
-          class="lg:col-span-2 relative overflow-hidden rounded-2xl p-1 shadow-xl bg-indigo-600"
-        >
+      <div
+        class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-slate-950 p-5 shadow-2xl shadow-blue-950/25 sm:p-6 lg:p-8"
+      >
+        <div class="relative grid gap-6 lg:grid-cols-3 lg:items-stretch">
+          <!-- CTA + INFO (2 cols) -->
           <div
-            class="relative rounded-2xl bg-white/10 backdrop-blur p-8 text-white"
+            class="lg:col-span-2 relative overflow-hidden rounded-2xl border border-white/10 bg-white/10 shadow-xl"
           >
-            <!-- subtle deco -->
-            <div
-              class="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-white/10 blur-3xl"
-            ></div>
-
+          <div
+            class="relative rounded-2xl p-6 text-white sm:p-8"
+          >
             <div
               class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
             >
@@ -1676,7 +1934,7 @@
             <!-- Info cards -->
             <div class="mt-8 grid md:grid-cols-2 gap-6">
               <!-- Phones -->
-              <div class="rounded-xl bg-white/10 p-5 border border-white/10">
+              <div class="rounded-xl bg-white/10 p-5 border border-white/15 shadow-lg shadow-blue-950/10">
                 <div class="font-semibold flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -1704,7 +1962,7 @@
                     >
                     <button
                       data-copy="+85581929195"
-                      class="copy-btn rounded-lg bg-white/15 px-2 py-1 text-xs hover:bg-white/25"
+                      class="copy-btn rounded-lg bg-white/15 px-2 py-1 text-xs text-white hover:bg-white/25"
                     >
                       Copy
                     </button>
@@ -1717,7 +1975,7 @@
                     >
                     <button
                       data-copy="+85578966877"
-                      class="copy-btn rounded-lg bg-white/15 px-2 py-1 text-xs hover:bg-white/25"
+                      class="copy-btn rounded-lg bg-white/15 px-2 py-1 text-xs text-white hover:bg-white/25"
                     >
                       Copy
                     </button>
@@ -1726,7 +1984,7 @@
               </div>
 
               <!-- Online -->
-              <div class="rounded-xl bg-white/10 p-5 border border-white/10">
+              <div class="rounded-xl bg-white/10 p-5 border border-white/15 shadow-lg shadow-blue-950/10">
                 <div class="font-semibold flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -1839,7 +2097,7 @@
 
         <!-- QR CARD -->
         <div
-          class="rounded-2xl bg-white p-6 shadow border flex flex-col items-center justify-center"
+          class="rounded-2xl border border-white/15 bg-white/95 p-6 shadow-xl shadow-blue-950/20 flex flex-col items-center justify-center"
         >
           <img
             src="qr-bro.png"
@@ -1853,7 +2111,7 @@
             href="https://docs.google.com/forms/d/e/1FAIpQLSdogje43LBRV8dLblyaMM1Hnw7MlaC6zpEvQ3s5G2aF7rmKcg/viewform"
             target="_blank"
             rel="noopener"
-            class="mt-4 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-500"
+            class="mt-4 inline-flex items-center gap-2 rounded-xl bg-blue-900 px-4 py-2 text-white font-semibold shadow hover:bg-blue-800"
           >
             Register Now
             <svg
@@ -1867,6 +2125,7 @@
             </svg>
           </a>
         </div>
+      </div>
       </div>
     </section>
 
@@ -1892,299 +2151,321 @@
         </div>
       </div>
     </footer>
-  </body>
-</html>
-<script
-  src="https://kit.fontawesome.com/YOUR_KIT_CODE.js"
-  crossorigin="anonymous"
-></script>
 
-<script>
-  document.querySelectorAll(".copy-btn").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const val = btn.getAttribute("data-copy");
-      try {
-        await navigator.clipboard.writeText(val);
-        const old = btn.textContent;
-        btn.textContent = "Copied!";
-        setTimeout(() => (btn.textContent = old), 1200);
-      } catch {
-        alert("Copy failed. Please copy manually: " + val);
-      }
+    <script>
+      document.querySelectorAll(".copy-btn").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const val = btn.getAttribute("data-copy");
+          try {
+            await navigator.clipboard.writeText(val);
+            const old = btn.textContent;
+            btn.textContent = "Copied!";
+            setTimeout(() => (btn.textContent = old), 1200);
+          } catch {
+            alert("Copy failed. Please copy manually: " + val);
+          }
+        });
+      });
+    </script>
+    <!-- Tiny filter script (no dependencies) -->
+    <script>
+      (function () {
+        const grid = document.getElementById("partnerGrid");
+        const cards = Array.from(grid.querySelectorAll(".partner-card"));
+        const btns = Array.from(document.querySelectorAll(".filter-btn"));
+        const search = document.getElementById("partnerSearch");
+        const empty = document.getElementById("partnerEmpty");
+
+        let activeCountry = "ALL";
+
+        // Style active button
+        function setActive(btn) {
+          btns.forEach((b) => {
+            b.setAttribute("aria-pressed", "false");
+            b.classList.remove("bg-indigo-600", "text-white", "border-indigo-600");
+          });
+          btn.setAttribute("aria-pressed", "true");
+          btn.classList.add("bg-indigo-600", "text-white", "border-indigo-600");
+        }
+
+        function applyFilters() {
+          const q = (search.value || "").trim().toLowerCase();
+          let visible = 0;
+
+          cards.forEach((card) => {
+            const country = card.getAttribute("data-country");
+            const text = card.textContent.toLowerCase();
+            const matchCountry =
+              activeCountry === "ALL" || country === activeCountry || country === "ALL";
+            const matchText = !q || text.includes(q);
+            const show = matchCountry && matchText;
+
+            card.classList.toggle("hidden", !show);
+            if (show) visible++;
+          });
+
+          empty.classList.toggle("hidden", visible > 0);
+        }
+
+        btns.forEach((btn) => {
+          // default active = All
+          if (btn.dataset.country === "ALL") setActive(btn);
+          btn.addEventListener("click", () => {
+            activeCountry = btn.dataset.country;
+            setActive(btn);
+            applyFilters();
+          });
+        });
+
+        search.addEventListener("input", applyFilters);
+        applyFilters();
+      })();
+    </script>
+
+    <script>
+  // Mobile Navbar Toggle
+  const menuButton = document.getElementById("menuButton");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  const iconHamburger = document.getElementById("iconHamburger");
+  const iconClose = document.getElementById("iconClose");
+
+  menuButton?.addEventListener("codex-disabled-click", () => {
+    mobileMenu.classList.toggle("hidden");
+
+    // Toggle icons
+    iconHamburger.classList.toggle("hidden");
+    iconClose.classList.toggle("hidden");
+
+    // Accessibility
+    const isOpen = !mobileMenu.classList.contains("hidden");
+    menuButton.setAttribute("aria-expanded", isOpen);
+  });
+
+  // Close menu when clicking a link
+  document.querySelectorAll("#mobileMenu a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+
+      iconHamburger.classList.remove("hidden");
+      iconClose.classList.add("hidden");
+
+      menuButton.setAttribute("aria-expanded", false);
     });
   });
 </script>
-<!-- Tiny filter script (no dependencies) -->
-<script>
-  (function () {
-    const grid = document.getElementById("partnerGrid");
-    const cards = Array.from(grid.querySelectorAll(".partner-card"));
-    const btns = Array.from(document.querySelectorAll(".filter-btn"));
-    const search = document.getElementById("partnerSearch");
-    const empty = document.getElementById("partnerEmpty");
 
-    let activeCountry = "ALL";
+    <!-- Tiny logic: filter, sort, USD↔KHR -->
+    <script>
+      (function () {
+        const grid = document.getElementById("progGrid");
+        const cards = Array.from(grid.querySelectorAll(".program-card"));
+        const search = document.getElementById("progSearch");
+        const empty = document.getElementById("progEmpty");
+        const sortEl = document.getElementById("progSort");
+        const btns = Array.from(document.querySelectorAll(".deg-btn"));
+        const toggle = document.getElementById("curToggle");
 
-    // Style active button
-    function setActive(btn) {
-      btns.forEach((b) => {
-        b.setAttribute("aria-pressed", "false");
-        b.classList.remove("bg-indigo-600", "text-white", "border-indigo-600");
-      });
-      btn.setAttribute("aria-pressed", "true");
-      btn.classList.add("bg-indigo-600", "text-white", "border-indigo-600");
-    }
+        // EDIT ME: KHR exchange rate
+        const KHR_RATE = 4100; // 1 USD ≈ 4100 KHR (adjust as needed)
 
-    function applyFilters() {
-      const q = (search.value || "").trim().toLowerCase();
-      let visible = 0;
+        let activeDeg = "ALL";
+        let currencyKHR = false;
 
-      cards.forEach((card) => {
-        const country = card.getAttribute("data-country");
-        const text = card.textContent.toLowerCase();
-        const matchCountry =
-          activeCountry === "ALL" ||
-          country === activeCountry ||
-          country === "ALL";
-        const matchText = !q || text.includes(q);
-        const show = matchCountry && matchText;
-
-        card.classList.toggle("hidden", !show);
-        if (show) visible++;
-      });
-
-      empty.classList.toggle("hidden", visible > 0);
-    }
-
-    btns.forEach((btn) => {
-      // default active = All
-      if (btn.dataset.country === "ALL") setActive(btn);
-      btn.addEventListener("click", () => {
-        activeCountry = btn.dataset.country;
-        setActive(btn);
-        applyFilters();
-      });
-    });
-
-    search.addEventListener("input", applyFilters);
-    applyFilters();
-  })();
-</script>
-
-<!-- Tiny logic: filter, sort, USD↔KHR -->
-<script>
-  (function () {
-    const grid = document.getElementById("progGrid");
-    const cards = Array.from(grid.querySelectorAll(".program-card"));
-    const search = document.getElementById("progSearch");
-    const empty = document.getElementById("progEmpty");
-    const sortEl = document.getElementById("progSort");
-    const btns = Array.from(document.querySelectorAll(".deg-btn"));
-    const toggle = document.getElementById("curToggle");
-
-    // EDIT ME: KHR exchange rate
-    const KHR_RATE = 4100; // 1 USD ≈ 4100 KHR (adjust as needed)
-
-    let activeDeg = "ALL";
-    let currencyKHR = false;
-
-    function fmtUSD(v) {
-      return "$" + Number(v).toLocaleString();
-    }
-    function fmtKHR(v) {
-      return "៛" + Math.round(v).toLocaleString();
-    }
-
-    function updatePrices() {
-      document.querySelectorAll(".js-price").forEach((el) => {
-        const usd = parseFloat(el.dataset.usd || "0");
-        el.textContent = currencyKHR ? fmtKHR(usd * KHR_RATE) : fmtUSD(usd);
-      });
-    }
-
-    function setActive(btn) {
-      btns.forEach((b) => {
-        b.setAttribute("aria-pressed", "false");
-        b.classList.remove("bg-indigo-600", "text-white", "border-indigo-600");
-      });
-      btn.setAttribute("aria-pressed", "true");
-      btn.classList.add("bg-indigo-600", "text-white", "border-indigo-600");
-    }
-
-    function applyFilters() {
-      const q = (search.value || "").trim().toLowerCase();
-      let visible = 0;
-      cards.forEach((card) => {
-        const levels = (card.dataset.levels || "")
-          .split(",")
-          .map((s) => s.trim());
-        const text = card.textContent.toLowerCase();
-        const matchDeg = activeDeg === "ALL" || levels.includes(activeDeg);
-        const matchText = !q || text.includes(q);
-        const show = matchDeg && matchText;
-        card.classList.toggle("hidden", !show);
-        if (show) visible++;
-      });
-      empty.classList.toggle("hidden", visible > 0);
-    }
-
-    function applySort() {
-      const mode = sortEl.value;
-      if (mode === "default") return; // keep original DOM order
-      const sorted = [...cards].sort((a, b) => {
-        const pa = parseFloat(a.dataset.priceUsd),
-          pb = parseFloat(b.dataset.priceUsd);
-        return mode === "price-asc" ? pa - pb : pb - pa;
-      });
-      sorted.forEach((c) => grid.appendChild(c));
-    }
-
-    // Events
-    btns.forEach((btn) => {
-      if (btn.dataset.deg === "ALL") setActive(btn);
-      btn.addEventListener("click", () => {
-        activeDeg = btn.dataset.deg;
-        setActive(btn);
-        applyFilters();
-      });
-    });
-
-    search.addEventListener("input", applyFilters);
-    sortEl.addEventListener("change", () => {
-      applySort();
-    });
-
-    // Currency toggle
-    toggle.addEventListener("click", () => {
-      const on = toggle.getAttribute("data-on") === "true";
-      toggle.setAttribute("data-on", String(!on));
-      toggle.setAttribute("aria-pressed", String(!on));
-      currencyKHR = !on;
-      updatePrices();
-    });
-
-    // Init
-    updatePrices();
-    applyFilters();
-  })();
-</script>
-
-<script>
-  (function () {
-    const btn = document.getElementById("menuButton");
-    const mob = document.getElementById("mobileMenu");
-    const iconHam = document.getElementById("iconHamburger");
-    const iconClose = document.getElementById("iconClose");
-    const progress = document.getElementById("scrollProgress");
-    const desktopLinks = Array.from(document.querySelectorAll("a.nav-link"));
-    const sections = desktopLinks
-      .map((a) => document.querySelector(a.getAttribute("href")))
-      .filter(Boolean);
-
-    // Mobile toggle
-    btn?.addEventListener("click", () => {
-      const isOpen = mob.classList.toggle("hidden") === false;
-      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      iconHam.classList.toggle("hidden", isOpen);
-      iconClose.classList.toggle("hidden", !isOpen);
-    });
-    // Close mobile on link click
-    mob?.querySelectorAll("a").forEach((a) =>
-      a.addEventListener("click", () => {
-        mob.classList.add("hidden");
-        btn.setAttribute("aria-expanded", "false");
-        iconHam.classList.remove("hidden");
-        iconClose.classList.add("hidden");
-      }),
-    );
-
-    // Scroll progress + subtle shadow on scroll
-    const onScroll = () => {
-      const sc = window.scrollY || document.documentElement.scrollTop;
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = Math.min(100, (sc / Math.max(1, h)) * 100) + "%";
-      document.getElementById("navBar").classList.toggle("shadow", sc > 2);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    // Active link highlight (IntersectionObserver)
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const idx = sections.indexOf(entry.target);
-          if (idx > -1 && entry.isIntersecting) {
-            desktopLinks.forEach((l) => l.classList.remove("active"));
-            desktopLinks[idx].classList.add("active");
-          }
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
-    );
-
-    sections.forEach((sec) => io.observe(sec));
-  })();
-</script>
-
-<script>
-  (function () {
-    const btn = document.getElementById("backToTop");
-    const SHOW_AT = 300; // px before showing
-
-    function setVisible(v) {
-      btn.classList.toggle("opacity-0", !v);
-      btn.classList.toggle("pointer-events-none", !v);
-      btn.classList.toggle("translate-y-3", !v);
-      btn.classList.toggle("translate-y-0", v);
-      btn.classList.toggle("opacity-100", v);
-    }
-    const onScroll = () =>
-      setVisible(
-        (window.scrollY || document.documentElement.scrollTop) > SHOW_AT,
-      );
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    // --- Custom animated scroll-to-top with styles ---
-    function animateToTop(effect = "ease") {
-      const startY = window.scrollY || document.documentElement.scrollTop;
-      if (startY <= 0) return;
-
-      // timings
-      const dur = effect === "spring" ? 700 : effect === "steps" ? 600 : 500;
-      const t0 = performance.now();
-
-      // easings
-      const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-      const springLike = (t) =>
-        1 - Math.exp(-6 * t) * Math.cos((t * 2 * Math.PI) / 0.7); // springy feel
-      const stepped = (t) => Math.ceil(t * 8) / 8; // 8 steps
-
-      function frame(now) {
-        const t = Math.min(1, (now - t0) / dur);
-        let e;
-        switch (effect) {
-          case "spring":
-            e = Math.min(1, springLike(t));
-            break;
-          case "steps":
-            e = stepped(t);
-            break;
-          default:
-            e = easeOutCubic(t);
+        function fmtUSD(v) {
+          return "$" + Number(v).toLocaleString();
         }
-        const y = Math.max(0, Math.round(startY * (1 - e)));
-        window.scrollTo(0, y);
-        if (t < 1) requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    }
+        function fmtKHR(v) {
+          return "៛" + Math.round(v).toLocaleString();
+        }
 
-    // Click: add a tiny tap animation + scroll
-    btn.addEventListener("click", () => {
-      btn.classList.add("tap");
-      setTimeout(() => btn.classList.remove("tap"), 200);
-      animateToTop(btn.getAttribute("data-effect") || "ease");
-    });
-  })();
-</script>
+        function updatePrices() {
+          document.querySelectorAll(".js-price").forEach((el) => {
+            const usd = parseFloat(el.dataset.usd || "0");
+            el.textContent = currencyKHR ? fmtKHR(usd * KHR_RATE) : fmtUSD(usd);
+          });
+        }
+
+        function setActive(btn) {
+          btns.forEach((b) => {
+            b.setAttribute("aria-pressed", "false");
+            b.classList.remove("bg-indigo-600", "text-white", "border-indigo-600");
+          });
+          btn.setAttribute("aria-pressed", "true");
+          btn.classList.add("bg-indigo-600", "text-white", "border-indigo-600");
+        }
+
+        function applyFilters() {
+          const q = (search.value || "").trim().toLowerCase();
+          let visible = 0;
+          cards.forEach((card) => {
+            const levels = (card.dataset.levels || "").split(",").map((s) => s.trim());
+            const text = card.textContent.toLowerCase();
+            const matchDeg = activeDeg === "ALL" || levels.includes(activeDeg);
+            const matchText = !q || text.includes(q);
+            const show = matchDeg && matchText;
+            card.classList.toggle("hidden", !show);
+            if (show) visible++;
+          });
+          empty.classList.toggle("hidden", visible > 0);
+        }
+
+        function applySort() {
+          const mode = sortEl.value;
+          if (mode === "default") return; // keep original DOM order
+          const sorted = [...cards].sort((a, b) => {
+            const pa = parseFloat(a.dataset.priceUsd), pb = parseFloat(b.dataset.priceUsd);
+            return mode === "price-asc" ? pa - pb : pb - pa;
+          });
+          sorted.forEach((c) => grid.appendChild(c));
+        }
+
+        // Events
+        btns.forEach((btn) => {
+          if (btn.dataset.deg === "ALL") setActive(btn);
+          btn.addEventListener("click", () => {
+            activeDeg = btn.dataset.deg;
+            setActive(btn);
+            applyFilters();
+          });
+        });
+
+        search.addEventListener("input", applyFilters);
+        sortEl.addEventListener("change", () => {
+          applySort();
+        });
+
+        // Currency toggle
+        toggle.addEventListener("click", () => {
+          const on = toggle.getAttribute("data-on") === "true";
+          toggle.setAttribute("data-on", String(!on));
+          toggle.setAttribute("aria-pressed", String(!on));
+          currencyKHR = !on;
+          updatePrices();
+        });
+
+        // Init
+        updatePrices();
+        applyFilters();
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const btn = document.getElementById("menuButton");
+        const mob = document.getElementById("mobileMenu");
+        const iconHam = document.getElementById("iconHamburger");
+        const iconClose = document.getElementById("iconClose");
+        const progress = document.getElementById("scrollProgress");
+        const desktopLinks = Array.from(document.querySelectorAll("a.nav-link"));
+        const sections = desktopLinks.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+
+        // Mobile toggle
+        btn?.addEventListener("click", () => {
+          const isOpen = mob.classList.toggle("hidden") === false;
+          btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          btn.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+          iconHam.classList.toggle("hidden", isOpen);
+          iconClose.classList.toggle("hidden", !isOpen);
+        });
+        // Close mobile on link click
+        mob?.querySelectorAll("a").forEach((a) =>
+          a.addEventListener("click", () => {
+            mob.classList.add("hidden");
+            btn.setAttribute("aria-expanded", "false");
+            btn.setAttribute("aria-label", "Open navigation menu");
+            iconHam.classList.remove("hidden");
+            iconClose.classList.add("hidden");
+          }),
+        );
+
+        // Scroll progress + subtle shadow on scroll
+        const onScroll = () => {
+          const sc = window.scrollY || document.documentElement.scrollTop;
+          const h = document.documentElement.scrollHeight - window.innerHeight;
+          progress.style.width = Math.min(100, (sc / Math.max(1, h)) * 100) + "%";
+          document.getElementById("navBar").classList.toggle("shadow", sc > 2);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        // Active link highlight (IntersectionObserver)
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const idx = sections.indexOf(entry.target);
+              if (idx > -1 && entry.isIntersecting) {
+                desktopLinks.forEach((l) => l.classList.remove("active"));
+                desktopLinks[idx].classList.add("active");
+              }
+            });
+          },
+          { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+        );
+
+        sections.forEach((sec) => io.observe(sec));
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const btn = document.getElementById("backToTop");
+        const SHOW_AT = 300; // px before showing
+
+        function setVisible(v) {
+          btn.classList.toggle("opacity-0", !v);
+          btn.classList.toggle("pointer-events-none", !v);
+          btn.classList.toggle("translate-y-3", !v);
+          btn.classList.toggle("translate-y-0", v);
+          btn.classList.toggle("opacity-100", v);
+        }
+        const onScroll = () =>
+          setVisible((window.scrollY || document.documentElement.scrollTop) > SHOW_AT);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        // --- Custom animated scroll-to-top with styles ---
+        function animateToTop(effect = "ease") {
+          const startY = window.scrollY || document.documentElement.scrollTop;
+          if (startY <= 0) return;
+
+          // timings
+          const dur = effect === "spring" ? 700 : effect === "steps" ? 600 : 500;
+          const t0 = performance.now();
+
+          // easings
+          const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+          const springLike = (t) => 1 - Math.exp(-6 * t) * Math.cos((t * 2 * Math.PI) / 0.7); // springy feel
+          const stepped = (t) => Math.ceil(t * 8) / 8; // 8 steps
+
+          function frame(now) {
+            const t = Math.min(1, (now - t0) / dur);
+            let e;
+            switch (effect) {
+              case "spring":
+                e = Math.min(1, springLike(t));
+                break;
+              case "steps":
+                e = stepped(t);
+                break;
+              default:
+                e = easeOutCubic(t);
+            }
+            const y = Math.max(0, Math.round(startY * (1 - e)));
+            window.scrollTo(0, y);
+            if (t < 1) requestAnimationFrame(frame);
+          }
+          requestAnimationFrame(frame);
+        }
+
+        // Click: add a tiny tap animation + scroll
+        btn.addEventListener("click", () => {
+          btn.classList.add("tap");
+          setTimeout(() => btn.classList.remove("tap"), 200);
+          animateToTop(btn.getAttribute("data-effect") || "ease");
+        });
+      })();
+    </script>
+
+  </body>
+</html>
